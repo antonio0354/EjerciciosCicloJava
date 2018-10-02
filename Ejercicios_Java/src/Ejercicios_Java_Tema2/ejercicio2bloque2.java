@@ -86,7 +86,7 @@ public class ejercicio2bloque2 {
 			
 		
 				}else {
-					System.out.println("El programa se ha terminado") ;
+					System.exit(0);
 			}
 			
 		System.out.println("Contador1:"+cont1+
