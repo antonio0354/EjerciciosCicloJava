@@ -11,48 +11,48 @@ public class ejercicio2bloque3 {
 				+ "3.- Multiplicacion de dos numeros\n"
 				+ "4.- Division de dos numeros\n"
 				+ "5.- Potencia de un numero elevado a otro\n"
-				+ "6.- Raiz cuadrada de un numero";
+				+ "6.- Raiz n-esima de un numero";
 				
 		int opcion= Integer.parseInt(JOptionPane.showInputDialog(menu));
 
+	    
 		int num1,num2;
-		float num3,num4;
+		
+		num1=Integer.parseInt(JOptionPane.showInputDialog("Introduzca un numero"));
+		num2=Integer.parseInt(JOptionPane.showInputDialog("Introduzca el segundo numero"));
+		String mensaje="";
 		
 		switch(opcion) {
-		case 1:
-			num1=Integer.parseInt(JOptionPane.showInputDialog("Introduzca un numero"));
-			num2=Integer.parseInt(JOptionPane.showInputDialog("Introduzca el segundo numero"));
-			JOptionPane.showMessageDialog(null, "Resultado: "+(num1+num2) );
+		case 1://suma
+			mensaje="Resultado: "+(num1+num2);
+			
 		break;
 		case 2:
-			num1=Integer.parseInt(JOptionPane.showInputDialog("Introduzca un numero"));
-			num2=Integer.parseInt(JOptionPane.showInputDialog("Introduzca el segundo numero"));
-			JOptionPane.showMessageDialog(null, "Resultado: "+(num1-num2) );
+			mensaje="Resultado: "+(num1-num2);
+			
 		break;
 		case 3:
-			num1=Integer.parseInt(JOptionPane.showInputDialog("Introduzca un numero"));
-			num2=Integer.parseInt(JOptionPane.showInputDialog("Introduzca el segundo numero"));
-			JOptionPane.showMessageDialog(null, "Resultado: "+(num1*num2) );
+			mensaje="Resultado: "+(num1*num2);
+			
 		break;
 		case 4:
-			num3=Float.parseFloat(JOptionPane.showInputDialog("Introduzca un numero"));
-			num4=Float.parseFloat(JOptionPane.showInputDialog("Introduzca el segundo numero"));
-			JOptionPane.showMessageDialog(null, "Resultado: "+(num3/num4) );
+			mensaje="Resultado: "+(num1/num2)+" Resto: "+(num1%num2);
+			
 		break;
 		case 5:
-			num1=Integer.parseInt(JOptionPane.showInputDialog("Introduzca un numero"));
-			num2=Integer.parseInt(JOptionPane.showInputDialog("Introduzca el segundo numero"));
-			JOptionPane.showMessageDialog(null, "Resultado: "+ (Math.pow(num1, num2)) );
+			mensaje="Resultado: "+(Math.pow(num1, num2));
+			
 		break;
 		case 6:
-			num1=Integer.parseInt(JOptionPane.showInputDialog("Introduzca un numero"));
+			mensaje="Resultado: "+ Math.pow(num1, (float)1/num2);
 			
-			JOptionPane.showMessageDialog(null, "Resultado: "+ (Math.sqrt(num1) ));
 		break;
 		default:
-			JOptionPane.showMessageDialog(null, "Error, comando erroneo");
+			mensaje="Error, comando erroneo";
 			break;
 		}
+		
+		JOptionPane.showMessageDialog(null, mensaje);
 	}
 
 }
