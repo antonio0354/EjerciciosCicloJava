@@ -9,8 +9,7 @@ public class ejercicio4bloque3 {
 		int importe=Integer.parseInt(JOptionPane.showInputDialog("Introduzca el importe del articulo: "));
 		int resultado;
 		int monedas;
-		int mon100=100,mon50=50,mon25=25,mon5=5,mon1=1;
-		int vuelta=0;
+		int mon100=100,mon50=50,mon25=25,mon5=5;
 		
 		
 		resultado=cantidad-importe;
@@ -20,7 +19,6 @@ public class ejercicio4bloque3 {
 		System.out.println(monedas+" monedas de 100");
 		
 		monedas=(resultado%mon100)/mon50;
-		
 		System.out.println(monedas+" monedas de 50");
 		
 		monedas=((resultado%mon100)%mon50)/mon25;
