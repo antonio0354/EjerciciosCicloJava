@@ -19,7 +19,7 @@ public class Ejercicio4bloque2 {
 			i=num2+1;
 			
 		}else {
-		System.out.println(multiplo);
+			System.out.println(num1+" x " + i +" = "+multiplo);
 			
 			
 		}

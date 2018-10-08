@@ -9,16 +9,14 @@ public class Ejercicio3bloque2 {
 		int multiplo;
 		
 		
-		for(int i=0;i<100;i++) {
+		for(int i=1;i<100;i++) {
 		multiplo=num1*i;
 		
-		
-		
 		if (multiplo>=100) {
-			i=102;
+			i=200;
 			
 		}else {
-		System.out.println(multiplo);
+		System.out.println(num1+" x " + i +" = "+multiplo);
 			
 			
 		}
