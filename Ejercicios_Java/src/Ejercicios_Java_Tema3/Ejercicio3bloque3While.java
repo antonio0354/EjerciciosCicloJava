@@ -22,7 +22,12 @@ public class Ejercicio3bloque3While {
 			
 		}
 		
-		JOptionPane.showMessageDialog(null, "El mayor es: "+ mayor);
+		if(mayor==0) {
+			System.exit(0);
+		}else {
+			JOptionPane.showMessageDialog(null, "El menor es: "+ mayor);
+
+		}
 
 	}
 

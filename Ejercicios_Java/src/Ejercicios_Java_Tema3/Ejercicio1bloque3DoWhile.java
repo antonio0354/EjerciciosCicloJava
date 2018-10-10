@@ -8,20 +8,21 @@ public class Ejercicio1bloque3DoWhile {
 		int suma=0;
 		int num;
 		
-		num=Integer.parseInt(JOptionPane.showInputDialog("Introduzca un numero (0 para terminar): "));
-		
 		do {
-			suma+=num;
-			
 			num=Integer.parseInt(JOptionPane.showInputDialog("Introduzca un numero (0 para terminar): "));
-			
-
-			
+				
+			suma+=num;
 			
 		}while(num!=0);
 		
-		JOptionPane.showMessageDialog(null, "La suma es: "+suma);
+		if(num==0) {
+			
+			System.exit(0);
+		}else {
+			JOptionPane.showMessageDialog(null, "La suma es: "+suma);
 
+		}
+		
 	}
 
 }

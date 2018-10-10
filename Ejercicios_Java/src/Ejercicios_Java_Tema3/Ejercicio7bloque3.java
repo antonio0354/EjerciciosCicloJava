@@ -22,8 +22,9 @@ public class Ejercicio7bloque3 {
 			
 			
 		}
-		JOptionPane.showMessageDialog(null, "Los negativos son: "+contNegativos);
-		JOptionPane.showMessageDialog(null, "Los positivos son: "+contPositivos);
+		JOptionPane.showMessageDialog(null, "Los negativos son: "+contNegativos+"\n"
+				+ "Los positivos son: "+contPositivos);
+		
 		
 	}
 
