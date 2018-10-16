@@ -6,15 +6,24 @@ public class Ejercicio1 {
 	int numeros[]= new int[150];
 	
 	for(int i=0;i<numeros.length;i++) {
-		numeros[i]=(int) Math.round(Math.random()*100);
+		numeros[i]=(int) Math.round(Math.random()*200-100);
 		
-		
-		if(numeros[i]%2==0) {
-			numeros[i]=numeros[i]-(2*numeros[i]);
-			System.out.println(numeros[i]);
+		if(numeros[i]>0) {
+			if(numeros[i]%2==0) {
+				numeros[i]=numeros[i]-(2*numeros[i]);
+				System.out.println("Cambiado de signo: "+numeros[i]);
+			}else {
+				System.out.println("Impar: "+numeros[i]);
+			}
 		}else {
-			System.out.println(numeros[i]);
+			if(numeros[i]%2==0) {
+				numeros[i]=numeros[i]-(2*numeros[i]);
+				System.out.println("Cambiado de signo: "+numeros[i]);
+			}else {
+				System.out.println("Impar: "+numeros[i]);
+			}
 		}
+		
 		
 	}
 	
