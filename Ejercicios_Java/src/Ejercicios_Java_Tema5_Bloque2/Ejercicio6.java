@@ -1,6 +1,6 @@
 package Ejercicios_Java_Tema5_Bloque2;
 
-public class Ejercicio4 {
+public class Ejercicio6 {
 
 	public static void main(String[] args) {
 	int numeros[]= new int[5];
