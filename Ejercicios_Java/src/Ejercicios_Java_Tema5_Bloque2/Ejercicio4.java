@@ -20,9 +20,9 @@ public class Ejercicio4 {
 		
 	}
 	numeros[0]=auxiliar;
-	
+	System.out.println("\nCambiados: ");
 	for(int i=0;i<numeros.length;i++) {
-		System.out.println("Posicion: "+i+"="+numeros[i]);
+		System.out.println("\nPosicion: "+i+"="+numeros[i]);
 	}
 	}
 
