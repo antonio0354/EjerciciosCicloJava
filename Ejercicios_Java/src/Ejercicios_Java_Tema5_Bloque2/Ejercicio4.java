@@ -8,7 +8,7 @@ public class Ejercicio4 {
 	
 	for(int i=0;i<numeros.length;i++) {
 		numeros[i]=(int) Math.round(Math.random()*100);
-		System.out.println("Posicion: "+i+"="+numeros[i]);
+		System.out.print(numeros[i]+" ");
 		
 	}
 	auxiliar=numeros[numeros.length-1];
@@ -22,7 +22,7 @@ public class Ejercicio4 {
 	numeros[0]=auxiliar;
 	System.out.println("\nCambiados: ");
 	for(int i=0;i<numeros.length;i++) {
-		System.out.println("\nPosicion: "+i+"="+numeros[i]);
+		System.out.print(numeros[i]+" ");
 	}
 	}
 

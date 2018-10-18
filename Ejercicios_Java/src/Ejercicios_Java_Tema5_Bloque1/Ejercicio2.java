@@ -17,8 +17,8 @@ public class Ejercicio2 {
 			System.out.println("Valor encontrado: "+numeros[i]+" cuyo indice es: "+i);
 			esta=true;
 		}else {
-			if(i==149 && esta==false) {
-				System.out.println(-1);
+			if(i==numeros.length-1 && esta==false) {
+				System.out.println("No esta en la secuencia de numeros");
 			}
 		}
 	}

@@ -13,7 +13,7 @@ public class Ejercicio5 {
 	
 	for(int i=0;i<numeros.length;i++) {
 		numeros[i]=(int) Math.round(Math.random()*100);
-		System.out.println("Posicion: "+i+"="+numeros[i]);
+		System.out.print(numeros[i]+" ");
 		
 	}
 	for(int j=0;j<posiciones;j++) {
@@ -31,7 +31,7 @@ public class Ejercicio5 {
 	
 	System.out.println("\nCambiados: ");
 	for(int i=0;i<numeros.length;i++) {
-		System.out.println("\nPosicion: "+i+"="+numeros[i]);
+		System.out.print(numeros[i]+" ");
 	}
 	}
 

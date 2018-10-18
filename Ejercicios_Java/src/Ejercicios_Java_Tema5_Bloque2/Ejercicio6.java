@@ -15,7 +15,7 @@ public class Ejercicio6 {
 	
 	for(int i=0;i<numeros.length;i++) {
 		numeros[i]=(int) Math.round(Math.random()*100);
-		System.out.println("Posicion: "+i+"="+numeros[i]);
+		System.out.print(numeros[i]+" ");
 		
 	}
 	if(direccion==1) {
@@ -52,7 +52,7 @@ public class Ejercicio6 {
 	
 	System.out.println("\nCambiados: ");
 	for(int i=0;i<numeros.length;i++) {
-		System.out.println("\nPosicion: "+i+"="+numeros[i]);
+		System.out.print(numeros[i]+" ");
 	}
 	}
 
