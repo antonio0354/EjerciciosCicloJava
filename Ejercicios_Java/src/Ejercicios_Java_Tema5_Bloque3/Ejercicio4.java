@@ -24,17 +24,15 @@ public class Ejercicio4 {
 			}
 			
 			
-			if(array[i]<pivote) {
+			while(array[i]<pivote && array[j]<pivote) {
 				i++;
 				
 			}
 			
-			if(array[j]>pivote) {
+			while(array[j]>pivote && array[i]<pivote) {
 				j--;
 				
 			}
-			
-			
 			
 			if(i==j) {
 				auxiliar=array[array.length-1];
