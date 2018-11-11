@@ -1,8 +1,19 @@
 package Ejercicios_Programacion_Objetos;
 
 public class Bach extends Matricula {
- 
+
 	private String modalidad;
+
+	public Bach() {
+		super();
+		
+	}
+
+	public Bach(String fecha, String codigo,String modalidad) {
+		super(fecha, codigo);
+		this.modalidad=modalidad;
+		
+	}
 
 	public String getModalidad() {
 		return modalidad;
@@ -12,20 +23,16 @@ public class Bach extends Matricula {
 		this.modalidad = modalidad;
 	}
 
-	public Bach(String modalidad) {
-		super();
-		this.modalidad = modalidad;
-	}
-
-	public Bach() {
-		super();
-		
-	}
-
 	@Override
 	public String toString() {
-		return "Bach [modalidad=" + modalidad + ", getFecha()=" + getFecha() + ", getCodigo()=" + getCodigo() + "]";
+		return "modalidad=" + modalidad + ", Fech)=" + getFecha() + ", Codigo=" + getCodigo();
 	}
+	
+	
+
+	
+	
+	
 	
 	
 }

@@ -4,6 +4,16 @@ public class FP extends Matricula {
 
 	private boolean dual;
 
+	public FP() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public FP(String fecha, String codigo,boolean dual) {
+		super(fecha, codigo);
+		this.dual=dual;
+	}
+
 	public boolean isDual() {
 		return dual;
 	}
@@ -12,20 +22,12 @@ public class FP extends Matricula {
 		this.dual = dual;
 	}
 
-	public FP(boolean dual) {
-		super();
-		this.dual = dual;
-	}
-
-	public FP() {
-		super();
-		
-	}
-
 	@Override
 	public String toString() {
-		return "FP [dual=" + dual + ", getFecha()=" + getFecha() + ", getCodigo()=" + getCodigo() + "]";
+		return "dual=" + dual + ", Fecha=" + getFecha() + ", Codigo=" + getCodigo();
 	}
+
+	
 	
 	
 }

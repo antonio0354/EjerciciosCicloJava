@@ -4,6 +4,17 @@ public class ESO extends Matricula {
 
 	private boolean pmar;
 
+	public ESO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public ESO(String fecha, String codigo,boolean pmar) {
+		super(fecha, codigo);
+		this.pmar=pmar;
+	}
+
+
 	public boolean isPmar() {
 		return pmar;
 	}
@@ -12,20 +23,12 @@ public class ESO extends Matricula {
 		this.pmar = pmar;
 	}
 
-	public ESO(boolean pmar) {
-		super();
-		this.pmar = pmar;
-	}
-
-	public ESO() {
-		super();
-		
-	}
-
 	@Override
 	public String toString() {
-		return "ESO [pmar=" + pmar + ", getFecha()=" + getFecha() + ", getCodigo()=" + getCodigo() + "]";
+		return "pmar=" + pmar + ", Fecha=" + getFecha() + ", Codigo=" + getCodigo();
 	}
+
+	
 	
 	
 	

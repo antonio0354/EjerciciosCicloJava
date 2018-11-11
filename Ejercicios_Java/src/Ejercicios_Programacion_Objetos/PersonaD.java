@@ -4,6 +4,16 @@ public class PersonaD extends Persona {
 
 	private String dni;
 
+	public PersonaD() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public PersonaD(String nombre, String apellidos, String fechanac,String dni) {
+		super(nombre, apellidos, fechanac);
+		this.dni=dni;
+	}
+
 	public String getDni() {
 		return dni;
 	}
@@ -12,22 +22,11 @@ public class PersonaD extends Persona {
 		this.dni = dni;
 	}
 
-	public PersonaD() {
-		super();
-
-	}
-
-	public PersonaD(String dni) {
-		super();
-		this.dni = dni;
-	}
-
 	@Override
 	public String toString() {
-		return "PersonaD [dni=" + dni + ", getNombre()=" + getNombre() + ", getApellidos()=" + getApellidos()
-				+ ", getFechanac()=" + getFechanac() + "]";
+		return "dni=" + dni + ", Nombre=" + getNombre() + ", Apellidos=" + getApellidos()
+				+ ", Fechanac=" + getFechanac();
 	}
 
-	
-	
+
 }

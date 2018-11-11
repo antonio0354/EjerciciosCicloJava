@@ -5,6 +5,16 @@ public class PersonaND extends Persona {
 	
 	private String descripcion;
 
+	public PersonaND() {
+		super();
+	
+	}
+
+	public PersonaND(String nombre, String apellidos, String fechanac,String descripcion) {
+		super(nombre, apellidos, fechanac);
+		this.descripcion=descripcion;
+	}
+
 	public String getDescripcion() {
 		return descripcion;
 	}
@@ -13,20 +23,13 @@ public class PersonaND extends Persona {
 		this.descripcion = descripcion;
 	}
 
-	public PersonaND(String descripcion) {
-		super();
-		this.descripcion = descripcion;
-	}
-
-	public PersonaND() {
-		super();
-		
-	}
-
 	@Override
 	public String toString() {
-		return "PersonaND [descripcion=" + descripcion + ", getNombre()=" + getNombre() + ", getApellidos()="
-				+ getApellidos() + ", getFechanac()=" + getFechanac() + "]";
+		return "descripcion:" + descripcion + ", nombre:" + getNombre() + ", Apellidos:"
+				+ getApellidos() + ",FechaNacimiento" + getFechanac();
 	}
+
+	
+	
 	
 }
