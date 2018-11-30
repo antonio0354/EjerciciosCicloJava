@@ -92,6 +92,7 @@ public class Ahorcado_juego {
 				
 			}else {
 				System.out.println("Has perdido");
+				System.out.println(palabra.getPalabrabuscada());
 			}
 			
 	}
