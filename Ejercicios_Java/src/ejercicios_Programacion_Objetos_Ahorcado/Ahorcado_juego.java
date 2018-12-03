@@ -25,6 +25,7 @@ public class Ahorcado_juego {
 	public static void setJuego(Ahorcado_juego juego) {
 		Ahorcado_juego.juego = juego;
 	}
+	
 	private static Ahorcado_juego juego=null;
 
 	public static Ahorcado_juego getJuego() {
@@ -84,6 +85,7 @@ public class Ahorcado_juego {
 			}
 				
 	}
+	Ahorcado_ventana.getventana().repaint();
 	}while(!(intentosfallidos>=6 || palabra.getPalabrabuscada().equals(busqueda) || coincidenciasRecorridas(palabra.getCoincidencias())==true));
 				
 
