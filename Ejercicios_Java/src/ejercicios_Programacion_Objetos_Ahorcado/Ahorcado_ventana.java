@@ -38,6 +38,11 @@ public class Ahorcado_ventana extends Canvas {
 	public void paint (Graphics g) {
 		
 	g.drawImage(Ahorcado_cacheimagen.getCache().getImagen("oeste.jpg"),0,0,this);
+	
+				if(Ahorcado_juego.getJuego().getCont()==1) {
+					g.drawImage(Ahorcado_cacheimagen.getCache().getImagenNavidad("navidad.jpg"),0,0,this);
+		
+				}
 		
 				if(Ahorcado_juego.getJuego().getIntentosfallidos()>0) {
 					//cuerpo

@@ -59,6 +59,19 @@ public class Ahorcado_cacheimagen {
 			return null;
 		}
 	}
+	
+	public BufferedImage getImagenNavidad(String navidad) {
+		URL url=null;
+		try {
+			url = getClass().getResource("/ejercicios_Programacion_Objetos_Ahorcado/recursos/" + navidad);
+			return ImageIO.read(url);
+		} catch (Exception e) {
+			System.out.println("No se pudo cargar la imagen " + navidad +" de "+url);
+			System.out.println("El error fue : "+e.getClass().getName()+" "+e.getMessage());
+			System.exit(0);
+			return null;
+		}
+	}
 
 
 	/**
