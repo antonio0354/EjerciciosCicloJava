@@ -52,7 +52,7 @@ public class Ahorcado_juego {
 		Ahorcado_palabras palabra =new Ahorcado_palabras();
 		
 	
-	//cambiamos las letras de las palabras a buscar por _
+	
 	
 	
 	
@@ -64,7 +64,7 @@ public class Ahorcado_juego {
 	//modo inmortal, no hay fallos
 	if(busqueda.equals("inmortal")) {
 		do {
-			
+			//cambiamos las letras de las palabras a buscar por _
 			for(int i=0;i<palabra.getCoincidencias().length;i++) {
 				palabra.getCoincidencias()[i]='_';
 				System.out.print(palabra.getCoincidencias()[i]+" " );
@@ -124,8 +124,9 @@ public class Ahorcado_juego {
 	}else {
 		//modo de navidad, cambia las palabras a la estetica de navidad y el fondo de la imagen
 		if(busqueda.equals("navidad")) {
+			//contador para que se cambie la foto de fondo
 			cont=1;
-			
+			//cambiamos las letras de las palabras a buscar por _
 			for(int i=0;i<palabra.getCoincidenciasNavidad().length;i++) {
 				palabra.getCoincidenciasNavidad()[i]='_';
 				System.out.println(palabra.getPalabrabuscadanavidad());
@@ -195,7 +196,7 @@ public class Ahorcado_juego {
 		}else {
 	//si no se introduce ni navidad ni inmortal, se inicia el modo normal
 	do {
-		
+		//cambiamos las letras de las palabras a buscar por _
 		for(int i=0;i<palabra.getCoincidencias().length;i++) {
 			palabra.getCoincidencias()[i]='_';
 			System.out.print(palabra.getCoincidencias()[i]+" " );
