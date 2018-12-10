@@ -51,24 +51,31 @@ public class Ahorcado_juego {
 		
 		Ahorcado_palabras palabra =new Ahorcado_palabras();
 		
+		for(int i=0;i<palabra.getCoincidencias().length;i++) {
+			palabra.getCoincidencias()[i]='_';
+			System.out.print(palabra.getCoincidencias()[i]+" ");
+			
+			
+		}
 	
-	
-	
+		for(int i=0;i<palabra.getCoincidenciasNavidad().length;i++) {
+			palabra.getCoincidenciasNavidad()[i]='_';
+			
+			
+		}
 	
 	
 	
 	//pedimos al usuario que tipo de modo quiere
+	String modo=" ";
 	String busqueda=" ";
-	busqueda=JOptionPane.showInputDialog("Introduce si quieres el modo inmortal o el modo navidad(por defecto será el modo normal)");
+	modo=JOptionPane.showInputDialog("Introduce si quieres el modo inmortal o el modo navidad(por defecto serï¿½ el modo normal)");
 	
 	//modo inmortal, no hay fallos
-	if(busqueda.equals("inmortal")) {
+	if(modo.equals("inmortal")) {
 		do {
-			//cambiamos las letras de las palabras a buscar por _
-			for(int i=0;i<palabra.getCoincidencias().length;i++) {
-				palabra.getCoincidencias()[i]='_';
-				System.out.print(palabra.getCoincidencias()[i]+" " );
-			}
+			
+			
 			busqueda=JOptionPane.showInputDialog("Prueba con una palabra o con una letra");
 		
 		
@@ -123,17 +130,14 @@ public class Ahorcado_juego {
 		
 	}else {
 		//modo de navidad, cambia las palabras a la estetica de navidad y el fondo de la imagen
-		if(busqueda.equals("navidad")) {
+		if(modo.equals("navidad")) {
 			//contador para que se cambie la foto de fondo
 			cont=1;
-			//cambiamos las letras de las palabras a buscar por _
-			for(int i=0;i<palabra.getCoincidenciasNavidad().length;i++) {
-				palabra.getCoincidenciasNavidad()[i]='_';
-				System.out.println(palabra.getPalabrabuscadanavidad());
-				
-			}
 			
+			
+			Ahorcado_ventana.getventana().repaint();
 			do {
+				
 				busqueda=JOptionPane.showInputDialog("Prueba con una palabra o con una letra");
 			
 			
@@ -196,11 +200,8 @@ public class Ahorcado_juego {
 		}else {
 	//si no se introduce ni navidad ni inmortal, se inicia el modo normal
 	do {
-		//cambiamos las letras de las palabras a buscar por _
-		for(int i=0;i<palabra.getCoincidencias().length;i++) {
-			palabra.getCoincidencias()[i]='_';
-			System.out.print(palabra.getCoincidencias()[i]+" " );
-		}
+		
+		
 		busqueda=JOptionPane.showInputDialog("Prueba con una palabra o con una letra");
 	
 	
