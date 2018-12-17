@@ -98,7 +98,9 @@ public class Ahorcado_juego {
 						
 							if(palabra.getPalabrabuscada().charAt(i) == busqueda.charAt(0)) {
 							
+
 							
+
 							palabra.getCoincidencias()[i]=busqueda.charAt(0);
 						
 							
