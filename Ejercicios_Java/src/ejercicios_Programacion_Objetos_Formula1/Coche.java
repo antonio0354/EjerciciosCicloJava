@@ -1,33 +1,26 @@
 package ejercicios_Programacion_Objetos_Formula1;
 
-public class Coche extends Vehiculos{
+public class Coche extends Vehiculo {
 
-	String color=" ";
-	String nombre=" ";
+	/**
+	 * 
+	 * @param x
+	 * @param nombre
+	 * @param color
+	 */
+	public Coche(String nombre, String color) {
+		super(nombre, color);
+	}
+
+	
+	
 	
 	/**
-	 * @return the color
+	 * Implementación del método abstracto que pinta el coche
 	 */
-	public String getColor() {
-		return color;
+	@Override
+	public String paint() {
+		return "Coche: " + this.nombre + " - " + this.x;
 	}
-	/**
-	 * @param color the color to set
-	 */
-	public void setColor(String color) {
-		this.color = color;
-	}
-	/**
-	 * @return the nombre
-	 */
-	public String getNombre() {
-		return nombre;
-	}
-	/**
-	 * @param nombre the nombre to set
-	 */
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	
+
 }
