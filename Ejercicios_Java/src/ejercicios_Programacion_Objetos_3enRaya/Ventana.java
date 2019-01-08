@@ -83,6 +83,9 @@ public class Ventana extends Canvas {
 	 */
 	@Override
 	public void paint(Graphics g) {
+		
+		
+		
 		for (Celda celda : celdas) {
 			celda.paint(g);
 		}

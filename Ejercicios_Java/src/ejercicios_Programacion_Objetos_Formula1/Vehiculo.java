@@ -5,8 +5,8 @@ public abstract class Vehiculo {
 	protected int x; // Posición horizontal que ocupa el vehículo
 	protected String nombre; // Nombre del conductor o conductora del vehículo
 	protected String color; // Color del vehículo, codificado como 6 cifras hexadecimales
-	protected boolean ganador = false;
-	protected int podium;
+	protected boolean ganador = false; // boolean para indicar si el jugador ha terminado la carrera
+	protected int podium; // variable para indicar el podium de cada jugador
 	
 	
 	

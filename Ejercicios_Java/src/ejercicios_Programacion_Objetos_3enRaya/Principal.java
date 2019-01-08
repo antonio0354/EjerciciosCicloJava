@@ -33,7 +33,7 @@ public class Principal {
 			public void paint(Graphics g, int offsetX, int offsetY) {
 				Graphics2D g2d = (Graphics2D) g;
 				g2d.setStroke(GuiUtil.WIDE_STROKE);
-				g2d.setColor(Color.gray);
+				g2d.setColor(Color.green);
 				g2d.drawLine(offsetX + Celda.PADDING, offsetY + Celda.PADDING, offsetX + Celda.LADO - Celda.PADDING, offsetY + Celda.LADO - Celda.PADDING);
 				g2d.drawLine(offsetX + Celda.LADO - Celda.PADDING, offsetY + Celda.PADDING, offsetX + Celda.PADDING, offsetY + Celda.LADO - Celda.PADDING);
 			}
@@ -42,7 +42,7 @@ public class Principal {
 		jugadores[1] = new Jugador ("Rafa", 2) {
 			@Override
 			public void paint(Graphics g, int offsetX, int offsetY) {
-				g.setColor(Color.gray);
+				g.setColor(Color.red);
 				g.fillOval(offsetX + Celda.PADDING, offsetY + Celda.PADDING, Celda.LADO - 2 * Celda.PADDING, Celda.LADO - 2 * Celda.PADDING);
 			}
 		};

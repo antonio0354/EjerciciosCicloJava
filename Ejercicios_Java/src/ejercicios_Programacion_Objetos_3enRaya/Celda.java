@@ -73,6 +73,8 @@ public class Celda {
 		
 		if (Matriz.getInstance().isJuegoTerminado()) {
 			JOptionPane.showMessageDialog(null, "Juego Terminado");
+			
+			
 		}
 	}
 	

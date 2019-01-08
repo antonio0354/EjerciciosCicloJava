@@ -7,7 +7,15 @@ public class Pista {
 	
 	
 	
-	public void tipoObstaculos() {
+	
+	/**
+	 * @param obstaculos
+	 * @param longitud
+	 */
+	public Pista(int longitud) {
+		super();
+		this.longitud = longitud;
+		
 		for(int i=0;i<obstaculos.length;i++) {
 			int numAzar=(int) Math.round(Math.random());
 			if(numAzar==0) {
@@ -20,11 +28,17 @@ public class Pista {
 		}
 		
 		
+		for(int i=0;i<obstaculos.length;i++) {
+			int num=(int) Math.round(Math.random()*500);
+			obstaculos[i].x=num;
+			
+			
+		}
+		
+		
 	}
 
-
-
-
+	
 	/**
 	 * @param obstaculos
 	 */

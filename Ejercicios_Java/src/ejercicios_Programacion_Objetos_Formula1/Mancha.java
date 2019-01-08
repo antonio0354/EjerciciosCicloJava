@@ -2,11 +2,6 @@ package ejercicios_Programacion_Objetos_Formula1;
 
 public class Mancha extends Obstaculo {
 	
-	
-	
-
-	
-	
 	/**
 	 * @param x
 	 */
