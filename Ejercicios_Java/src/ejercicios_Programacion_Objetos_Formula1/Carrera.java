@@ -6,16 +6,18 @@ public class Carrera {
 	private Vehiculo vehiculos[] = new Vehiculo[5];
 	private Pista pistas[] = new Pista[4];
 
+	
+	
 	/**
 	 * Constructor
 	 */
 	public Carrera() {
 		super();
-		// Inicialización de los vehículos
+		// Inicializaciï¿½n de los vehï¿½culos
 		vehiculos[0] = new Coche("Bertha Benz", "ff7c7c");
 		vehiculos[1] = new Moto("Dani Pedrosa", "ffe97c");
 		vehiculos[2] = new Coche("Fernando Alonso", "82ff7c");
-		vehiculos[3] = new Coche("María de Villota", "8effd9");
+		vehiculos[3] = new Coche("Marï¿½a de Villota", "8effd9");
 		vehiculos[4] = new Moto("Ana Carrasco", "d18eff");
 		
 		//inicializacion de las pistas
@@ -37,7 +39,7 @@ public class Carrera {
 				
 				if(vehiculos[i].ganador==false) {
 					vehiculos[i].avanza();
-					System.out.println(vehiculos[i].nombre + " avanza a la posicion: "+ vehiculos[i].x);
+					System.out.println(vehiculos[i].paint());
 				
 					
 					//si el vehiculo ha llegado a la meta
@@ -64,6 +66,19 @@ public class Carrera {
 			}
 			System.out.println(" ");
 		}while(!terminado);
+		
+		System.out.println("Podium: ");
+		
+		// Ordenaciï¿½n por el mï¿½todo de la burbuja, desde la derecha
+				for (int i = vehiculos.length-1; i > 0; i--) {
+					for (int j = 0; j < i; j++) {
+						if (vehiculos[j].podium > vehiculos[j+1].podium) {
+							Vehiculo aux = vehiculos[j];
+							vehiculos[j] = vehiculos[j+1];
+							vehiculos [j+1] = aux;
+						}
+					}
+				}
 		
 		
 		//imprimir el podium

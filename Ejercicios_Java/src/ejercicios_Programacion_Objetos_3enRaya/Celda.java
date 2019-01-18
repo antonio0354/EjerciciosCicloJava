@@ -21,6 +21,10 @@ public class Celda {
 	}
 
 	
+	
+	
+	
+	
 	/**
 	 * 
 	 * @param g
@@ -28,6 +32,33 @@ public class Celda {
 	public void paint(Graphics g) {
 		g.setColor((this.moving)? Color.YELLOW : Color.WHITE);
 		g.fillRect(this.x, this.y, LADO, LADO);
+		
+		
+		//Dibujar las casillas
+		g.setColor(Color.black);
+		g.fillRect(200, 0, PADDING, 600);
+		
+		g.setColor(Color.black);
+		g.fillRect(400, 0, PADDING, 600);
+		
+		g.setColor(Color.black);
+		g.fillRect(600, 0, PADDING, 600);
+		
+		g.setColor(Color.black);
+		g.fillRect(0, 0, PADDING, 600);
+		
+		g.setColor(Color.black);
+		g.fillRect(0, 200, 600, PADDING);
+		
+		g.setColor(Color.black);
+		g.fillRect(0, 0, 600, PADDING);
+		
+		g.setColor(Color.black);
+		g.fillRect(0, 400, 600, PADDING);
+		
+		g.setColor(Color.black);
+		g.fillRect(0, 600, 600, PADDING);
+		
 		
 		if (this.jugador != null) {
 			this.jugador.paint(g, this.x, this.y);
@@ -71,10 +102,14 @@ public class Celda {
 		ventana.revalidate();
 		ventana.repaint();
 		
+		
+		
+		
+		
 		if (Matriz.getInstance().isJuegoTerminado()) {
 			JOptionPane.showMessageDialog(null, "Juego Terminado");
 			
-			
+			System.exit(0);
 		}
 	}
 	
