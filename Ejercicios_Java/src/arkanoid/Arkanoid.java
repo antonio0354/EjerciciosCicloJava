@@ -54,11 +54,11 @@ public class Arkanoid extends Canvas implements Stage, KeyListener {
     for( int i=0; i<10; i++) {
     	for( int j=0; j< 5 ;j++) {
     		Ladrillo ladrillo = new Ladrillo(this);
-    		
+    		ladrillo.Color(j);
             ladrillo.setX(10+i*60);
             ladrillo.setY(20+j*50);
-            ladrillo.setContador(ladrillo.getContador()+1);
             actors.add(ladrillo);
+            
            
     	}
     	
