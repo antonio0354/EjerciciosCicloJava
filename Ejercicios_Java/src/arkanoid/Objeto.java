@@ -1,24 +1,38 @@
 package arkanoid;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-public class Actor {
+
+
+public class Objeto {
 	protected int x,y,contador=0;
+	protected boolean markedForRemoval;
+	protected boolean explosion = false;
+	
 	/**
-	 * @return the contador
+	 * @return the explosion
 	 */
-	public int getContador() {
-		return contador;
+	public boolean isExplosion() {
+		return explosion;
 	}
 
 	/**
-	 * @param contador the contador to set
+	 * @param explosion the explosion to set
 	 */
-	public void setContador(int contador) {
-		this.contador = contador;
+	public void setExplosion(boolean explosion) {
+		this.explosion = explosion;
 	}
 
+	public void remove() {
+		markedForRemoval = true;
+	}
+	
+	public boolean isMarkedForRemoval() {
+		return markedForRemoval;
+	}
+	
 	protected int width, height;
 	protected String[] spriteNames;
 	protected int currentFrame;
@@ -27,7 +41,7 @@ public class Actor {
 	protected Stage stage;
 	protected SpriteCache spriteCache;
 	
-	public Actor(Stage stage) {
+	public Objeto(Stage stage) {
 		this.stage = stage;
 		spriteCache = stage.getSpriteCache();
 		currentFrame = 0;
@@ -71,5 +85,13 @@ public class Actor {
 			t=0;
   		currentFrame = (currentFrame + 1) % spriteNames.length;
 		}
+	}
+	
+	public Rectangle getBounds() {
+		return new Rectangle(x,y,width,height);
+	}
+	
+	public void collision(Objeto a){
+		
 	}
 }

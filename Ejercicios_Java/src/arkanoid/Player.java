@@ -1,8 +1,9 @@
 package arkanoid;
 
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
-public class Player extends Actor {
+public class Player extends Objeto {
 	protected static final int PLAYER_SPEED = 4;
 	protected int vx;
 	protected int vy;
@@ -17,6 +18,8 @@ public class Player extends Actor {
 	public void act() {
 		super.act();
 		x+=vx;
+		
+		//modificacion para que no se pase de los bordes
 		if(x<0) {
 			x=0;
 		}
@@ -61,6 +64,11 @@ public class Player extends Actor {
 		  case KeyEvent.VK_DOWN : down = true;break;
   	}
   	updateSpeed();
+  }
+  
+  public void mouseMoved(MouseEvent e) {
+	  
+	  setX(e.getX());
   }
   
 }

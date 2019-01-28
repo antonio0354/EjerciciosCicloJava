@@ -1,7 +1,7 @@
 package arkanoid;
-public class Ladrillo extends Actor {
+public class Ladrillo extends Objeto {
+	private boolean destruido =false;
 	
-	public int contador =0;
 	
 	public Ladrillo(Stage stage) {
 		super(stage);
@@ -9,16 +9,38 @@ public class Ladrillo extends Actor {
 	
 	}
 	
-	public void act() {
-		super.act();
-		
 	
-	}
-	
+	//metodo que cambia la imagen del ladrillo
 	public void Color(int i) {
 		
 		setSpriteNames( new String[] {"ladrillo"+i+".png"});
 		setFrameSpeed(35);
 		
 	}
+	public void Destruir() {
+	
+		for(int i=1;i<4;i++) {
+		setSpriteNames( new String[] {"explosion"+i+".png"});
+		setFrameSpeed(35);
+		
+		}
+		
+	}
+
+
+	/**
+	 * @return the destruido
+	 */
+	public boolean isDestruido() {
+		return destruido;
+	}
+
+
+	/**
+	 * @param destruido the destruido to set
+	 */
+	public void setDestruido(boolean destruido) {
+		this.destruido = destruido;
+	}
+	
 }

@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
-public class SpriteCache {
+public class SpriteCache{
 	private HashMap sprites;
 	
 	public SpriteCache() {

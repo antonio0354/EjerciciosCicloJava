@@ -4,8 +4,14 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
@@ -14,21 +20,23 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Arkanoid extends Canvas implements Stage, KeyListener {
+
+
+public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListener , MouseMotionListener{
 	
 	private BufferStrategy strategy;
 	private long usedTime;
-	
 	private SpriteCache spriteCache;
-	private ArrayList actors; 
+	private ArrayList objetos; 
 	private Player player;
-	public int contador =0;
+	private boolean explosion = false;
 	
+	
+	//Crea la ventana
 	public Arkanoid() {
 		spriteCache = new SpriteCache();
-		
 	
-		JFrame ventana = new JFrame("Invaders");
+		JFrame ventana = new JFrame("Arkanoid");
 		JPanel panel = (JPanel)ventana.getContentPane();
 		setBounds(0,0,Stage.WIDTH,Stage.HEIGHT);
 		panel.setPreferredSize(new Dimension(Stage.WIDTH,Stage.HEIGHT));
@@ -41,6 +49,19 @@ public class Arkanoid extends Canvas implements Stage, KeyListener {
 				System.exit(0);
 			}
 		});
+		
+		if(ventana.isVisible()==true) {
+			this.addMouseMotionListener(new MouseAdapter(){
+				@Override
+				public void mouseMoved (MouseEvent e) {
+					player.mouseMoved(e);
+					
+				}
+			});
+		}
+		
+		
+		
 		ventana.setResizable(false);
 		createBufferStrategy(2);
 		strategy = getBufferStrategy();
@@ -48,31 +69,65 @@ public class Arkanoid extends Canvas implements Stage, KeyListener {
 		addKeyListener(this);
 	}
 	
+	
+	public void checkCollisions() {
+		Rectangle playerBounds = player.getBounds();
+		
+		for (int i = 0; i < objetos.size(); i++) {
+			Objeto a1 = (Objeto)objetos.get(i);
+			Rectangle r1 = a1.getBounds();
+			if (r1.intersects(playerBounds)) {
+				player.collision(a1);
+				a1.collision(player);
+				
+				
+			}
+		  for (int j = i+1; j < objetos.size(); j++) {
+			Objeto a2 = (Objeto)objetos.get(j);
+		  	Rectangle r2 = a2.getBounds();
+		  	if (r1.intersects(r2)) {
+		  		a1.collision(a2);
+		  		a2.collision(a1);
+		  		
+		  		objetos.remove(a1);
+		  	    
+		  		
+		  		
+		  	}
+		  }
+		  
+		  
+		}
+	}
+	
 	public void initWorld() {
-    actors = new ArrayList();
+		objetos = new ArrayList();
     
+    //crear los ladrillos
     for( int i=0; i<10; i++) {
     	for( int j=0; j< 5 ;j++) {
     		Ladrillo ladrillo = new Ladrillo(this);
-    		ladrillo.Color(j);
+    		ladrillo.Color(j);;
             ladrillo.setX(10+i*60);
             ladrillo.setY(20+j*50);
-            actors.add(ladrillo);
+            objetos.add(ladrillo);
             
            
     	}
     	
     }
     
+    //crear la pelota
     for (int i = 0; i < 1; i++){
     	Pelota p = new Pelota(this);
-      p.setX( Stage.WIDTH/2 );
+        p.setX( Stage.WIDTH/2 );
 	    p.setY( Stage.HEIGHT/2 );
 	    p.setVx( 2 );
         p.setVy(2);
-      actors.add(p);
+        objetos.add(p);
     }
     
+    //crear la plataforma
     player = new Player(this);
     player.setX(Stage.WIDTH/2);
     player.setY(400);
@@ -83,22 +138,28 @@ public class Arkanoid extends Canvas implements Stage, KeyListener {
 	}
 	
 
-	
+	/**
+	 * 
+	 */
 	public void updateWorld() {
-		for (int i = 0; i < actors.size(); i++) {
-			Actor m = (Actor)actors.get(i);
+		for (int i = 0; i < objetos.size(); i++) {
+			Objeto m = (Objeto)objetos.get(i);
 			m.act();
 		}
 		player.act();
 	
 	}
 	
+	/**
+	 * Metodo que pinta los objetos 
+	 */
 	public void paintWorld() {
+		Toolkit.getDefaultToolkit().sync();
 		Graphics2D g = (Graphics2D)strategy.getDrawGraphics();
 		g.setColor(Color.black);
 		g.fillRect(0,0,getWidth(),getHeight());
-		for (int i = 0; i < actors.size(); i++) {
-			Actor m = (Actor)actors.get(i);
+		for (int i = 0; i < objetos.size(); i++) {
+			Objeto m = (Objeto)objetos.get(i);
 			m.paint(g);
 		}
 		player.paint(g);
@@ -131,6 +192,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener {
 		while (isVisible()) {
 			long startTime = System.currentTimeMillis();
 			updateWorld();
+			checkCollisions();
 			paintWorld();
 			usedTime = System.currentTimeMillis()-startTime;
 			try { 
@@ -142,5 +204,47 @@ public class Arkanoid extends Canvas implements Stage, KeyListener {
 	public static void main(String[] args) {
 		Arkanoid ark = new Arkanoid();
 		ark.game();
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
