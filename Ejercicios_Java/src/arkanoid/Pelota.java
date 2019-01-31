@@ -29,6 +29,7 @@ public class Pelota extends Objeto {
 	public void collision(Objeto a) {
 		if(a instanceof Ladrillo) {
 			vy=-vy;
+			stage.getSoundCache().playSound("disparo_1.wav");
 		}
 		if(a instanceof Player) {
 			vy= -vy;

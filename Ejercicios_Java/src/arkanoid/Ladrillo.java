@@ -17,15 +17,7 @@ public class Ladrillo extends Objeto {
 		setFrameSpeed(35);
 		
 	}
-	public void Destruir() {
 	
-		for(int i=1;i<4;i++) {
-		setSpriteNames( new String[] {"explosion"+i+".png"});
-		setFrameSpeed(35);
-		
-		}
-		
-	}
 
 
 	/**

@@ -10,6 +10,7 @@ public class Objeto {
 	protected int x,y,contador=0;
 	protected boolean markedForRemoval;
 	protected boolean explosion = false;
+	protected int num;
 	
 	/**
 	 * @return the explosion
@@ -80,9 +81,9 @@ public class Objeto {
 	public void setWidth(int i) {	width = i;	}
 
 	public void act() {
-		t++;
-		if (t % frameSpeed == 0){
-			t=0;
+		num=0;
+		if (num % frameSpeed == 1){
+			num=0;
   		currentFrame = (currentFrame + 1) % spriteNames.length;
 		}
 	}

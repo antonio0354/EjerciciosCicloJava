@@ -30,11 +30,12 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 	private ArrayList objetos; 
 	private Player player;
 	private boolean explosion = false;
-	
+	private SoundCache soundCache;
 	
 	//Crea la ventana
 	public Arkanoid() {
 		spriteCache = new SpriteCache();
+		soundCache = new SoundCache();
 	
 		JFrame ventana = new JFrame("Arkanoid");
 		JPanel panel = (JPanel)ventana.getContentPane();
@@ -88,7 +89,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		  	if (r1.intersects(r2)) {
 		  		a1.collision(a2);
 		  		a2.collision(a1);
-		  		
+		  		a1.num++;
 		  		objetos.remove(a1);
 		  	    
 		  		
@@ -133,7 +134,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
     player.setY(400);
     
     
-    
+    soundCache.loopSound("gta-san-andreas.wav");
    
 	}
 	
@@ -172,6 +173,10 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 	  	g.drawString("--- fps",0,Stage.HEIGHT-50);
 		strategy.show();
 	}
+	
+	public SoundCache getSoundCache() {
+		 return soundCache;
+	 }
 	
 	public SpriteCache getSpriteCache() {
 		return spriteCache;
