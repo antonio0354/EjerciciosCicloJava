@@ -39,7 +39,7 @@ public class Objeto {
 	protected int currentFrame;
 	protected int frameSpeed;
 	protected int t;
-	protected Stage stage;
+	protected static Stage stage;
 	protected SpriteCache spriteCache;
 	
 	public Objeto(Stage stage) {
@@ -81,7 +81,7 @@ public class Objeto {
 	public void setWidth(int i) {	width = i;	}
 
 	public void act() {
-		num=0;
+		
 		if (num % frameSpeed == 1){
 			num=0;
   		currentFrame = (currentFrame + 1) % spriteNames.length;

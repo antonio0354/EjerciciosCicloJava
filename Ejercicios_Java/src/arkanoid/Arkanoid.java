@@ -29,7 +29,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 	private SpriteCache spriteCache;
 	private ArrayList objetos; 
 	private Player player;
-	private boolean explosion = false;
+
 	private SoundCache soundCache;
 	
 	//Crea la ventana
@@ -87,12 +87,19 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 			Objeto a2 = (Objeto)objetos.get(j);
 		  	Rectangle r2 = a2.getBounds();
 		  	if (r1.intersects(r2)) {
+		  	    Explosion explosion = new Explosion(this);
+		  	    
 		  		a1.collision(a2);
 		  		a2.collision(a1);
-		  		a1.num++;
-		  		objetos.remove(a1);
-		  	    
 		  		
+		  		objetos.add(explosion);
+		  		explosion.setX(a1.getX());
+		        explosion.setY(a1.getY());
+		  	    objetos.remove(a1);
+		  	    
+		  	   // objetos.remove(explosion);
+		  	    
+		  	    
 		  		
 		  	}
 		  }

@@ -13,7 +13,7 @@ public class Ladrillo extends Objeto {
 	//metodo que cambia la imagen del ladrillo
 	public void Color(int i) {
 		
-		setSpriteNames( new String[] {"ladrillo"+i+".png"});
+		setSpriteNames( new String[] {"ladrillo"+i+".png","ladrillo"+2+".png"});
 		setFrameSpeed(35);
 		
 	}
