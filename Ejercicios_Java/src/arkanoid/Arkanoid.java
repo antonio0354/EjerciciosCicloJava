@@ -92,9 +92,9 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		  		a1.collision(a2);
 		  		a2.collision(a1);
 		  		
-		  		objetos.add(explosion);
-		  		explosion.setX(a1.getX());
-		        explosion.setY(a1.getY());
+		  		//objetos.add(explosion);
+		  		//explosion.setX(a1.getX());
+		        //explosion.setY(a1.getY());
 		  	    objetos.remove(a1);
 		  	    
 		  	   // objetos.remove(explosion);
@@ -141,7 +141,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
     player.setY(400);
     
     
-    soundCache.loopSound("gta-san-andreas.wav");
+    soundCache.loopSound("Solve The Puzzle.wav");
    
 	}
 	

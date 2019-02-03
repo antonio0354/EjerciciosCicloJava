@@ -1,7 +1,7 @@
 package arkanoid;
 public class Pelota extends Objeto {
-	protected int vx;
-	protected int vy;
+	protected float vx;
+	protected float vy;
 	
 	public Pelota(Stage stage) {
 		super(stage);
@@ -21,9 +21,9 @@ public class Pelota extends Objeto {
 			  vy = -vy;
 	}
 
-	public int getVx() { return vx; }
+	public float getVx() { return vx; }
 	public void setVx(int i) {vx = i;	}
-	public int getVy() { return vy; }
+	public float getVy() { return vy; }
 	public void setVy(int j) {vy = j;	}
 	
 	public void collision(Objeto a) {
