@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import ejercicios_Programacion_Objetos_3enRaya.Celda;
+
 
 
 public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListener , MouseMotionListener{
@@ -29,6 +31,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 	private SpriteCache spriteCache;
 	private ArrayList objetos; 
 	private Player player;
+	private Pelota pelota;
 
 	private SoundCache soundCache;
 	
@@ -51,15 +54,34 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 			}
 		});
 		
-		if(ventana.isVisible()==true) {
+		
 			this.addMouseMotionListener(new MouseAdapter(){
 				@Override
 				public void mouseMoved (MouseEvent e) {
 					player.mouseMoved(e);
+					pelota.mouseMoved(e);
 					
 				}
+				
+				
+				
+				
+				
+				
 			});
-		}
+			
+			this.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					pelota.MouseClicked();
+					
+				}
+				
+				
+			});
+		
+			
+		
 		
 		
 		
@@ -125,15 +147,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
     	
     }
     
-    //crear la pelota
-    for (int i = 0; i < 1; i++){
-    	Pelota p = new Pelota(this);
-        p.setX( Stage.WIDTH/2 );
-	    p.setY( Stage.HEIGHT/2 );
-	    p.setVx( 2 );
-        p.setVy(2);
-        objetos.add(p);
-    }
+    
     
     //crear la plataforma
     player = new Player(this);
@@ -143,6 +157,15 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
     
     soundCache.loopSound("Solve The Puzzle.wav");
    
+  //crear la pelota
+    for (int i = 0; i < 1; i++){
+    	pelota= new Pelota(this);
+        pelota.setX( player.getX()+20);
+	    pelota.setY( player.getY()-20);
+	    
+	    
+        objetos.add(pelota);
+    }
 	}
 	
 
@@ -191,10 +214,12 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 	
 	public void keyPressed(KeyEvent e) {
 		player.keyPressed(e);
+		pelota.keyPressed(e);
 	}
 	
 	public void keyReleased(KeyEvent e) {
 		player.keyReleased(e);
+		pelota.keyReleased(e);
 	}
 	public void keyTyped(KeyEvent e) {}
 	
@@ -232,19 +257,19 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
+		pelota.MouseClicked();
 		
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
