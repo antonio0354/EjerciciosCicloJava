@@ -2,14 +2,22 @@ package arkanoid;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.Date;
 
 public class Pelota extends Objeto {
+	protected static final int SPEED = 4;
 	protected float vx;
 	protected float vy;
 	private boolean space;
 	private boolean pulsada = false;
+	private boolean up,down,left,right;
+	private boolean comprueba = false;
+	private boolean compruebatiempo=false;
 	
 	private boolean desactivar=false;
+	private long millisDesdeInicio = new Date().getTime();
+
+	
 	
 	public Pelota(Stage stage) {
 		super(stage);
@@ -18,20 +26,34 @@ public class Pelota extends Objeto {
 		
 		
 	}
+
 	
 	
 	public void act() {
 		super.act();
+		
+		long millisActuales = new Date().getTime();
+		long millisTranscurridos = millisActuales - millisDesdeInicio;
+		
+		/*
+		if (millisTranscurridos > 5000) {
+			vx=2;
+			vy=3;
+		}
+		*/
+		
+		
 		x+=vx;
 		y+=vy;
 		//rebote de la pelota
-		if(space == true && pulsada==false) {
+		if((space == true && pulsada==false)|| (millisTranscurridos >5000 && compruebatiempo==false)) {
 			vx=2;
 			vy=3;
 			pulsada=true;
 			desactivar=true;
-		}else
-		 {
+			comprueba=true;
+			compruebatiempo=true;
+		}else{
 			
 		}
 		
@@ -48,20 +70,47 @@ public class Pelota extends Objeto {
 	public void setVy(int j) {vy = j;	}
 	
 	
+	protected void updateSpeed() {
+	  if(comprueba==false) {
+	  
+	    vx=0;
+	  	if (left) vx= -SPEED; 
+	  	if (right) vx = SPEED;
+	  	if(x<0) {
+			x=0;
+		}
+		 if(x > stage.WIDTH - getWidth()) {
+			 x = stage.WIDTH - getWidth();
+			 
+		 }
+	  }
+	  	
+	  }
+	
 	public void keyReleased(KeyEvent e) {
 	   	switch (e.getKeyCode()) {
 	  		case KeyEvent.VK_SPACE : space = false;break;
-			 
+	  		case KeyEvent.VK_DOWN : down = false;break;
+			case KeyEvent.VK_UP : up = false; break;
+			case KeyEvent.VK_LEFT : left = false; break; 
+			case KeyEvent.VK_RIGHT : right = false;break;
 	   	}
-	   act();
+	   	updateSpeed();
+	  
+		
 	  }
 	  
 	  public void keyPressed(KeyEvent e) {
 	  	switch (e.getKeyCode()) {
 			  case KeyEvent.VK_SPACE : space = true; break;
-			 
+			  case KeyEvent.VK_UP : up = true; break;
+			  case KeyEvent.VK_LEFT : left = true; break;
+			  case KeyEvent.VK_RIGHT : right = true; break;
+			  case KeyEvent.VK_DOWN : down = true;break;
 	  	}
-	  	act();
+	  	updateSpeed();
+	  	
+		
 	  }
 	  
 	 public void MouseClicked() {
@@ -75,7 +124,7 @@ public class Pelota extends Objeto {
 	 
 	 public void mouseMoved(MouseEvent e) {
 		  if(desactivar==false) {
-			  setX(e.getX());
+			  setX(e.getX()+20);
 		  }
 		 
 	  }

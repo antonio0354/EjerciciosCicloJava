@@ -16,6 +16,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -32,7 +33,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 	private ArrayList objetos; 
 	private Player player;
 	private Pelota pelota;
-
+	
 	private SoundCache soundCache;
 	
 	//Crea la ventana
@@ -96,9 +97,11 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 	public void checkCollisions() {
 		Rectangle playerBounds = player.getBounds();
 		
+		
 		for (int i = 0; i < objetos.size(); i++) {
 			Objeto a1 = (Objeto)objetos.get(i);
 			Rectangle r1 = a1.getBounds();
+			
 			if (r1.intersects(playerBounds)) {
 				player.collision(a1);
 				a1.collision(player);
@@ -109,7 +112,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 			Objeto a2 = (Objeto)objetos.get(j);
 		  	Rectangle r2 = a2.getBounds();
 		  	if (r1.intersects(r2)) {
-		  	    Explosion explosion = new Explosion(this);
+		  	  
 		  	    
 		  		a1.collision(a2);
 		  		a2.collision(a1);
@@ -134,11 +137,11 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		objetos = new ArrayList();
     
     //crear los ladrillos
-    for( int i=0; i<10; i++) {
+    for( int i=0; i<8; i++) {
     	for( int j=0; j< 5 ;j++) {
     		Ladrillo ladrillo = new Ladrillo(this);
     		ladrillo.Color(j);;
-            ladrillo.setX(10+i*60);
+            ladrillo.setX(10+i*80);
             ladrillo.setY(20+j*50);
             objetos.add(ladrillo);
             
@@ -173,6 +176,8 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 	 * 
 	 */
 	public void updateWorld() {
+		
+		
 		for (int i = 0; i < objetos.size(); i++) {
 			Objeto m = (Objeto)objetos.get(i);
 			m.act();
@@ -226,6 +231,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 	public void game() {
 		usedTime=1000;
 		initWorld();
+		
 		while (isVisible()) {
 			long startTime = System.currentTimeMillis();
 			updateWorld();
