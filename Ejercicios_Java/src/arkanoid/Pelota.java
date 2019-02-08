@@ -62,12 +62,14 @@ public class Pelota extends Objeto {
 		
 		if (y < 0 || y > Stage.HEIGHT-45)
 			  vy = -vy;
+		
+		
 	}
 
 	public float getVx() { return vx; }
-	public void setVx(int i) {vx = i;	}
+	public void setVx(float f) {vx = f;	}
 	public float getVy() { return vy; }
-	public void setVy(int j) {vy = j;	}
+	public void setVy(float f) {vy = f;	}
 	
 	
 	protected void updateSpeed() {
@@ -133,11 +135,16 @@ public class Pelota extends Objeto {
 		if(a instanceof Ladrillo) {
 			vy= -vy;
 			stage.getSoundCache().playSound("disparo_1.wav");
-			
+			vy+=0.2;
+			vx+=0.1;
 		}
 		if(a instanceof Player) {
 			vy=-vy;
+			//vy+=0.1;
+			//vx+=0.05;
 		}
 		
 	}
+	
+	
 }

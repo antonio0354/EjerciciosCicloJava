@@ -101,6 +101,8 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		for (int i = 0; i < objetos.size(); i++) {
 			Objeto a1 = (Objeto)objetos.get(i);
 			Rectangle r1 = a1.getBounds();
+			Rectangle derecha= new Rectangle(a1.getX()+59,a1.getY(),2,a1.height);
+			Rectangle izquierda= new Rectangle(a1.getX(),a1.getY(),2,a1.height);
 			
 			if (r1.intersects(playerBounds)) {
 				player.collision(a1);
@@ -111,21 +113,47 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		  for (int j = i+1; j < objetos.size(); j++) {
 			Objeto a2 = (Objeto)objetos.get(j);
 		  	Rectangle r2 = a2.getBounds();
-		  	if (r1.intersects(r2)) {
+		  	
+		  	
+		  	if (derecha.intersects(r2)&&r1.intersects(r2)) {
 		  	  
-		  	    
-		  		a1.collision(a2);
-		  		a2.collision(a1);
+		  	    pelota.setVx(-pelota.getVx());
+		  	    //pelota.setVy(-pelota.getVy());
 		  		
-		  		//objetos.add(explosion);
-		  		//explosion.setX(a1.getX());
-		        //explosion.setY(a1.getY());
+		  		
+		  		
+		  	    objetos.remove(a1);
+	
+		  	}else {
+		  	if (izquierda.intersects(r2)&&r1.intersects(r2)) {
+			  	  
+		  	    pelota.setVx(-pelota.getVx());
+		  	    //pelota.setVy(-pelota.getVy());
+		  	
+		  		
+		  		
 		  	    objetos.remove(a1);
 		  	    
-		  	   // objetos.remove(explosion);
+		  	 
 		  	    
 		  	    
 		  		
+		  	}else {
+		  		if (r1.intersects(r2)) {
+				  	  
+			  	    
+			  		a1.collision(a2);
+			  		a2.collision(a1);
+			  		
+			  		
+			  	    objetos.remove(a1);
+			  	    
+			  	 
+			  	    
+			  	    
+			  		
+			  	}
+		  	}
 		  	}
 		  }
 		  
@@ -137,11 +165,11 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		objetos = new ArrayList();
     
     //crear los ladrillos
-    for( int i=0; i<8; i++) {
+    for( int i=0; i<6; i++) {
     	for( int j=0; j< 5 ;j++) {
     		Ladrillo ladrillo = new Ladrillo(this);
     		ladrillo.Color(j);;
-            ladrillo.setX(10+i*80);
+            ladrillo.setX(40+i*100);
             ladrillo.setY(20+j*50);
             objetos.add(ladrillo);
             
@@ -172,7 +200,8 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 	}
 	
 
-	/**
+	/**setSpriteNames( new String[] {"bola.png"});
+		setFrameSpeed(35);
 	 * 
 	 */
 	public void updateWorld() {
@@ -231,7 +260,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 	public void game() {
 		usedTime=1000;
 		initWorld();
-		
+	
 		while (isVisible()) {
 			long startTime = System.currentTimeMillis();
 			updateWorld();
