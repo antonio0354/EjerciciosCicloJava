@@ -127,6 +127,10 @@ public class Pelota extends Objeto {
 	 public void mouseMoved(MouseEvent e) {
 		  if(desactivar==false) {
 			  setX(e.getX()+20);
+			  if(x > stage.WIDTH - getWidth()) {
+					 x = stage.WIDTH - getWidth();
+					 
+				 }
 		  }
 		 
 	  }

@@ -2,7 +2,6 @@ package arkanoid;
 public class Ladrillo extends Objeto {
 	private boolean destruido =false;
 	
-	
 	public Ladrillo(Stage stage) {
 		super(stage);
 		
@@ -14,6 +13,13 @@ public class Ladrillo extends Objeto {
 	public void Color(int i) {
 		
 		setSpriteNames( new String[] {"ladrillo"+i+".png","ladrillo"+2+".png"});
+		setFrameSpeed(35);
+		
+	}
+	
+	public void Color2(int i) {
+		
+		setSpriteNames( new String[] {"ladrillo2"+(i+1)+".png","ladrillo"+2+".png"});
 		setFrameSpeed(35);
 		
 	}

@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import ejercicios_Programacion_Objetos_3enRaya.Celda;
@@ -33,6 +34,12 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 	private ArrayList objetos; 
 	private Player player;
 	private Pelota pelota;
+	private int pasarFase=1;
+	private boolean tocado=false;
+	private int inmortales=0;
+	private int vidas=3;
+	private boolean unavez1=false;
+	private boolean unavez2=false;
 	
 	private SoundCache soundCache;
 	
@@ -103,6 +110,8 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 			Rectangle r1 = a1.getBounds();
 			Rectangle derecha= new Rectangle(a1.getX()+59,a1.getY(),2,a1.height);
 			Rectangle izquierda= new Rectangle(a1.getX(),a1.getY(),2,a1.height);
+			Rectangle arriba= new Rectangle(a1.getX(),a1.getY(),a1.width,2);
+			Rectangle abajo= new Rectangle(a1.getX(),a1.getY()+19,a1.width,2);
 			
 			if (r1.intersects(playerBounds)) {
 				player.collision(a1);
@@ -115,68 +124,129 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		  	Rectangle r2 = a2.getBounds();
 		  	
 		  	
-		  	if (derecha.intersects(r2)&&r1.intersects(r2)) {
-		  	  
+		  	if (derecha.intersects(r2)) {
+		  	    
 		  	    pelota.setVx(-pelota.getVx());
-		  	    //pelota.setVy(-pelota.getVy());
+		  	    //pelota.setX(a1.getX()+63);
 		  		
+		  		if(a1.inmortal==true) {
+		  			
+		  		}else {
+		  			
+		  			if(a1.golpes==0) {
+		  				objetos.remove(a1);
+		  			}else {
+		  				a1.setSpriteNames( new String[] {"ladrilloroto.png"});
+		  				a1.golpes--;
+		  			}
+		  			 
+		  		}
 		  		
-		  		
-		  	    objetos.remove(a1);
+		  	   
 	
+		  	  
 		  	}else {
-		  	if (izquierda.intersects(r2)&&r1.intersects(r2)) {
-			  	  
+		  	if (izquierda.intersects(r2)) {
+		  		 
 		  	    pelota.setVx(-pelota.getVx());
-		  	    //pelota.setVy(-pelota.getVy());
+		  	   // pelota.setX(a1.getX()-2);
+		  	    
 		  	
 		  		
 		  		
-		  	    objetos.remove(a1);
+		  	  if(a1.inmortal==true) {
+		  			
+		  		}else {
+		  			if(a1.golpes==0) {
+		  				objetos.remove(a1);
+		  			}else {
+		  				a1.setSpriteNames( new String[] {"ladrilloroto.png"});
+		  				a1.golpes--;
+		  			}
+		  		}
 		  	    
 		  	 
 		  	    
 		  	    
 		  		
 		  	}else {
-		  		if (r1.intersects(r2)) {
-				  	  
-			  	    
-			  		a1.collision(a2);
-			  		a2.collision(a1);
+		  		if (arriba.intersects(r2)) {
+		  			
+		  			 
+			  		
+			  		//pelota.setY(a1.getY());
 			  		
 			  		
-			  	    objetos.remove(a1);
+			  		if(a1.inmortal==true) {
+			  			pelota.setVy(-pelota.getVy());
+			  		}else {
+			  			a1.collision(a2);
+				  		a2.collision(a1);
+			  			if(a1.golpes==0) {
+			  				objetos.remove(a1);
+			  			}else {
+			  				a1.setSpriteNames( new String[] {"ladrilloroto.png"});
+			  				a1.golpes--;
+			  			}
+			  		}
 			  	    
 			  	 
 			  	    
 			  	    
 			  		
-			  	}
+			  	}else {
+			  		if (abajo.intersects(r2)) {
+			  			
+			  			 
+				  		
+				  		//pelota.setY(a1.getY()+10);
+				  		
+				  		
+				  		if(a1.inmortal==true) {
+				  			pelota.setVy(-pelota.getVy());
+				  		}else {
+				  			a1.collision(a2);
+					  		a2.collision(a1);
+				  			if(a1.golpes==0) {
+				  				objetos.remove(a1);
+				  			}else {
+				  				a1.setSpriteNames( new String[] {"ladrilloroto.png"});
+				  				a1.golpes--;
+				  			}
+				  		}
+				  	    
+				  	 
+				  	    
+				  	    
+				  		
+				  	}
+		  	}
 		  	}
 		  	}
 		  }
-		  
-		  
 		}
 	}
 	
 	public void initWorld() {
-		objetos = new ArrayList();
+		
+		
+		if(unavez1==false) {
+			objetos = new ArrayList();
+			for( int i=0; i<1; i++) {
+		    	for( int j=0; j< 1 ;j++) {
+		    		Ladrillo ladrillo = new Ladrillo(this);
+		    		ladrillo.Color(j);;
+		            ladrillo.setX(40+i*100);
+		            ladrillo.setY(20+j*50);
+		            objetos.add(ladrillo);
+		            
+		           
+		    	}
+		    	
+		    }
+			unavez1=true;
+		}
     
-    //crear los ladrillos
-    for( int i=0; i<6; i++) {
-    	for( int j=0; j< 5 ;j++) {
-    		Ladrillo ladrillo = new Ladrillo(this);
-    		ladrillo.Color(j);;
-            ladrillo.setX(40+i*100);
-            ladrillo.setY(20+j*50);
-            objetos.add(ladrillo);
-            
-           
-    	}
-    	
-    }
     
     
     
@@ -197,6 +267,96 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 	    
         objetos.add(pelota);
     }
+	}
+	
+	public void initWorld2() {
+		objetos = new ArrayList();
+    
+    //crear los ladrillos
+		
+		
+    for( int i=0; i<1; i++) {
+    	for( int j=0; j< 1 ;j++) {
+    		Ladrillo ladrillo = new Ladrillo(this);
+    		ladrillo.Color2(j);;
+            ladrillo.setX(280+i*100);
+            ladrillo.setY(20+j*50);
+            objetos.add(ladrillo);
+    	}
+    	   }
+    
+    for( int i=0; i<2; i++) {
+    	for( int j=1; j< 2 ;j++) {
+    		Ladrillo ladrillo = new Ladrillo(this);
+    		ladrillo.Color2(j);;
+            ladrillo.setX(230+i*100);
+            ladrillo.setY(20+j*50);
+            ladrillo.inmortal=true; 
+            inmortales++;
+            objetos.add(ladrillo);
+    	}
+    	   }
+    
+    for( int i=0; i<3; i++) {
+    	for( int j=2; j< 3 ;j++) {
+    		Ladrillo ladrillo = new Ladrillo(this);
+    		ladrillo.Color2(j);;
+            ladrillo.setX(180+i*100);
+            ladrillo.setY(20+j*50);
+            
+            objetos.add(ladrillo);
+    	}
+    	   }
+    
+    for( int i=0; i<4; i++) {
+    	for( int j=3; j< 4 ;j++) {
+    		Ladrillo ladrillo = new Ladrillo(this);
+    		ladrillo.Color2(j);;
+            ladrillo.setX(130+i*100);
+            ladrillo.setY(20+j*50);
+            objetos.add(ladrillo);
+    	}
+    	   }
+    
+    for( int i=0; i<5; i++) {
+    	for( int j=4; j< 5 ;j++) {
+    		Ladrillo ladrillo = new Ladrillo(this);
+    		ladrillo.Color2(j);;
+            ladrillo.setX(80+i*100);
+            ladrillo.setY(20+j*50);
+            ladrillo.setGolpes(1);
+            objetos.add(ladrillo);
+            
+    	}
+    	   }
+    
+    for( int i=0; i<6; i++) {
+    	for( int j=5; j< 6 ;j++) {
+    		Ladrillo ladrillo = new Ladrillo(this);
+    		ladrillo.Color2(j);;
+            ladrillo.setX(30+i*100);
+            ladrillo.setY(20+j*50);
+            
+            objetos.add(ladrillo);
+            
+           
+    	}
+    	   }
+    
+    
+    
+  
+    
+    soundCache.loopSound("Solve The Puzzle.wav");
+    for (int i = 0; i < 1; i++){
+    	pelota= new Pelota(this);
+        pelota.setX( player.getX()+20);
+	    pelota.setY( player.getY()-20);
+	    
+	    
+        objetos.add(pelota);
+    }
+  
 	}
 	
 
@@ -259,7 +419,40 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 	
 	public void game() {
 		usedTime=1000;
-		initWorld();
+	
+			initWorld();
+
+		while (isVisible()) {
+			long startTime = System.currentTimeMillis();
+			updateWorld();
+			checkCollisions();
+			paintWorld();
+			usedTime = System.currentTimeMillis()-startTime;
+			try { 
+				 Thread.sleep(SPEED);
+			} catch (InterruptedException e) {}
+			
+			if(objetos.size()==pasarFase) {
+				JOptionPane.showMessageDialog(null, "Has completado la primera fase");
+				game2();
+			}
+			if(pelota.getY()>=Stage.HEIGHT-50) {
+				vidas--;
+				objetos.remove(pelota);
+				JOptionPane.showMessageDialog(null, "Has perdido una vida, vidas restantes: "+vidas);
+				game();
+				
+			}
+			if(vidas==0) {
+				JOptionPane.showMessageDialog(null, "GAME OVER");
+				System.exit(0);
+			}
+		}
+	}
+	
+	public void game2() {
+		usedTime=1000;
+		initWorld2();
 	
 		while (isVisible()) {
 			long startTime = System.currentTimeMillis();
@@ -270,6 +463,22 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 			try { 
 				 Thread.sleep(SPEED);
 			} catch (InterruptedException e) {}
+			
+			if(objetos.size()<=inmortales+1) {
+				JOptionPane.showMessageDialog(null, "Has ganado");
+				System.exit(0);
+			}
+			if(pelota.getY()>=Stage.HEIGHT-50) {
+				vidas--;
+				objetos.remove(pelota);
+				JOptionPane.showMessageDialog(null, "Has perdido una vida, vidas restantes: "+vidas);
+				game();
+				
+			}
+			if(vidas==0) {
+				JOptionPane.showMessageDialog(null, "GAME OVER");
+				System.exit(0);
+			}
 		}
 	}
 	

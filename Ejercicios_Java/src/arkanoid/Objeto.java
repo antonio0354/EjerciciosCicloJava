@@ -11,7 +11,37 @@ public class Objeto {
 	protected boolean markedForRemoval;
 	protected boolean explosion = false;
 	protected int num;
+	protected boolean inmortal=false;
+	protected int golpes=0;
 	
+	/**
+	 * @return the golpes
+	 */
+	public int getGolpes() {
+		return golpes;
+	}
+
+	/**
+	 * @param golpes the golpes to set
+	 */
+	public void setGolpes(int golpes) {
+		this.golpes = golpes;
+	}
+
+	/**
+	 * @return the inmortal
+	 */
+	public boolean isInmortal() {
+		return inmortal;
+	}
+
+	/**
+	 * @param inmortal the inmortal to set
+	 */
+	public void setInmortal(boolean inmortal) {
+		this.inmortal = inmortal;
+	}
+
 	/**
 	 * @return the explosion
 	 */
