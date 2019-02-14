@@ -5,6 +5,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.Date;
 
+import tutorialJava.Arkanoid.version09.Actor;
+
 public class Pelota extends Objeto {
 	protected static final int SPEED = 4;
 	protected float vx;
@@ -28,6 +30,79 @@ public class Pelota extends Objeto {
 		
 	}
 
+	private void colisionConLadrillo (Actor actorColisionado) {
+		int margenLateral = 4; // Este mare
+		// Creo peque�os rect�ngulos que coincidir�n con los bordes del ladrillo
+		Rectangle rectArribaActor = new Rectangle(actorColisionado.getX(), actorColisionado.getY(), actorColisionado.getAncho(), 1);
+		Rectangle rectAbajoActor = new Rectangle(actorColisionado.getX(), actorColisionado.getY() + actorColisionado.getAlto()-1, actorColisionado.getAncho(), 1);
+		Rectangle rectIzquierdaActor = new Rectangle(actorColisionado.getX(), actorColisionado.getY() + margenLateral, 1, actorColisionado.getAlto() - 2 * margenLateral);
+		Rectangle rectDerechaActor = new Rectangle(actorColisionado.getX() + actorColisionado.getAncho()-1, actorColisionado.getY() + margenLateral, 1, actorColisionado.getAlto() - 2 * margenLateral);
+
+		// variables booleanas que me indicar�n una colsi�n por cada lado del ladrillo
+		boolean arriba = false, abajo = false, derecha = false, izquierda = false;
+		
+		if (this.getRectanguloParaColisiones().intersects(rectArribaActor))  arriba = true;
+		if (this.getRectanguloParaColisiones().intersects(rectAbajoActor))  abajo = true;
+		if (this.getRectanguloParaColisiones().intersects(rectIzquierdaActor))  izquierda = true;
+		if (this.getRectanguloParaColisiones().intersects(rectDerechaActor))  derecha = true;
+		
+		if (arriba && izquierda) { // Colisi�n con esquina superior izquierda
+			// Coloco la bola en la esquina
+			this.x = actorColisionado.x;
+			this.y = actorColisionado.y;
+			this.coordenadas.x = this.x; this.coordenadas.y = this.y;
+			// Recalculo la pendiente
+			this.trayectoria.setPendiente(Math.abs(this.trayectoria.getPendiente()), this.coordenadas, false);
+			return;
+		}
+		if (arriba && derecha) {
+			this.x = actorColisionado.x + actorColisionado.ancho;
+			this.y = actorColisionado.y;
+			this.coordenadas.x = this.x; this.coordenadas.y = this.y;
+			this.trayectoria.setPendiente(0-Math.abs(this.trayectoria.getPendiente()), this.coordenadas, true);
+			return;
+		}
+		if (abajo && izquierda) {
+			this.x = actorColisionado.x;
+			this.y = actorColisionado.y + actorColisionado.alto;
+			this.coordenadas.x = this.x; this.coordenadas.y = this.y;
+			this.trayectoria.setPendiente(0-Math.abs(this.trayectoria.getPendiente()), this.coordenadas, false);
+			return;
+		}
+		if (abajo && derecha) {
+			this.x = actorColisionado.x + actorColisionado.ancho;
+			this.y = actorColisionado.y + actorColisionado.alto;
+			this.coordenadas.x = this.x; this.coordenadas.y = this.y;
+			this.trayectoria.setPendiente(Math.abs(this.trayectoria.getPendiente()), this.coordenadas, true);
+			return;
+		}
+		if (abajo) {
+			this.y = actorColisionado.y + actorColisionado.alto;
+			this.coordenadas.y = this.y;
+			this.trayectoria.reflejarHaciaAbajo(this.coordenadas);
+			return;
+		}
+		if (arriba) {
+			this.y = actorColisionado.y;
+			this.coordenadas.y = this.y;
+			this.trayectoria.reflejarHaciaArriba(this.coordenadas);
+			return;
+		}
+		if (izquierda) {
+			this.x = actorColisionado.x;
+			this.coordenadas.x = this.x;
+			this.trayectoria.reflejarHaciaIzquierda(this.coordenadas);
+			return;
+		}
+		if (derecha) {
+			this.x = actorColisionado.x + actorColisionado.ancho;
+			this.coordenadas.x = this.x;
+			this.trayectoria.reflejarHaciaDerecha(this.coordenadas);
+			return;
+		}
+	}
+	
+	
 	public Rectangle getRectanguloParaColisiones () {
 		return new Rectangle(this.x + this.width / 2 - 4, this.y + this.height / 2 - 4, 8, 8);
 	}
