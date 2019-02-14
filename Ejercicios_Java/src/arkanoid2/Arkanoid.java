@@ -1,4 +1,4 @@
-package arkanoid;
+package arkanoid2;
 
 import java.awt.Canvas;
 import java.awt.Color;
@@ -17,6 +17,7 @@ import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -26,18 +27,19 @@ import ejercicios_Programacion_Objetos_3enRaya.Celda;
 
 
 
+
 public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListener , MouseMotionListener{
 	
 	private BufferStrategy strategy;
 	private long usedTime;
 	private SpriteCache spriteCache;
-	protected ArrayList objetos; 
+	private List<Objeto> objetos = new ArrayList<Objeto>();
 	
 	/**
 	 * @return the objetos
 	 */
 	public ArrayList getObjetos() {
-		return objetos;
+		return (ArrayList) objetos;
 	}
 
 
@@ -119,127 +121,8 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 	}
 	
 	
-	public void checkCollisions() {
-		Rectangle playerBounds = player.getBounds();
-		
-		
-		for (int i = 0; i < objetos.size(); i++) {
-			
-			Objeto a1 = (Objeto)objetos.get(i);
-			Rectangle r1 = a1.getBounds();
-			Rectangle derecha= new Rectangle(a1.getX()+59,a1.getY(),2,a1.height);
-			Rectangle izquierda= new Rectangle(a1.getX(),a1.getY(),2,a1.height);
-			Rectangle arriba= new Rectangle(a1.getX(),a1.getY(),a1.width,2);
-			Rectangle abajo= new Rectangle(a1.getX(),a1.getY()+19,a1.width,2);
-			
-			if (r1.intersects(playerBounds)) {
-				player.collision(a1);
-				a1.collision(player);
-				
-				
-			}
-		  for (int j = i+1; j < objetos.size(); j++) {
-			Objeto a2 = (Objeto)objetos.get(j);
-		  	Rectangle r2 = a2.getBounds();
-		  	
-		  	
-		  	if (derecha.intersects(r2)) {
-		  	    
-		  	    pelota.setVx(-pelota.getVx());
-		  	   
-		  		
-		  		if(a1.inmortal==true) {
-		  			
-		  		}else {
-		  			
-		  			if(a1.golpes==0) {
-		  				objetos.remove(a1);
-		  				posicionXCapsula=a1.getX()+30;
-		  				posicionYCapsula=a1.getY();
-		  				capsulas();
-		  			}else {
-		  				a1.setSpriteNames( new String[] {"ladrilloroto.png"});
-		  				a1.golpes--;
-		  			}
-		  			 
-		  		}
-		  	
-		  	}else {
-		  	if (izquierda.intersects(r2)) {
-		  		 
-		  	    pelota.setVx(-pelota.getVx());
-		  	   
-		  	  if(a1.inmortal==true) {
-		  			
-		  		}else {
-		  			if(a1.golpes==0) {
-		  				objetos.remove(a1);
-		  				posicionXCapsula=a1.getX()+30;
-		  				posicionYCapsula=a1.getY();
-		  				capsulas();
-		  			}else {
-		  				a1.setSpriteNames( new String[] {"ladrilloroto.png"});
-		  				a1.golpes--;
-		  			}
-		  		}
-		  	    
-		  	 
-		  	    
-		  	    
-		  		
-		  	}else {
-		  		if (arriba.intersects(r2)) {
-		  			
-			  		if(a1.inmortal==true) {
-			  			pelota.setVy(-pelota.getVy());
-			  		}else {
-			  			a1.collision(a2);
-				  		a2.collision(a1);
-			  			if(a1.golpes==0) {
-			  				objetos.remove(a1);
-			  				posicionXCapsula=a1.getX()+30;
-			  				posicionYCapsula=a1.getY();
-			  				capsulas();
-			  			}else {
-			  				a1.setSpriteNames( new String[] {"ladrilloroto.png"});
-			  				a1.golpes--;
-			  			}
-			  		}
-			  	    
-			  	 
-			  	    
-			  	    
-			  		
-			  	}else {
-			  		if (abajo.intersects(r2)) {
-			  		
-				  		if(a1.inmortal==true) {
-				  			pelota.setVy(-pelota.getVy());
-				  		}else {
-				  			a1.collision(a2);
-					  		a2.collision(a1);
-				  			if(a1.golpes==0) {
-				  				objetos.remove(a1);
-				  				posicionXCapsula=a1.getX()+30;
-				  				posicionYCapsula=a1.getY();
-				  				capsulas();
-				  			}else {
-				  				a1.setSpriteNames( new String[] {"ladrilloroto.png"});
-				  				a1.golpes--;
-				  			}
-				  		}
-				  	    
-				  	 
-				  	    
-				  	    
-				  		
-				  	}
-		  	}
-		  	}
-		  	}
-		  }
-		}
-	}
+	
+	
 	
 	public void initWorld() {
 		
@@ -391,6 +274,26 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		}
 		player.act();
 	
+		
+		for (Objeto objeto : this.objetos) {
+			if (objeto instanceof Ladrillo || objeto instanceof Player) {
+				if (detectarYNotificarColisionConBola (objeto)) {
+					break; // Una vez que detecto la primera colisi�n dejo de buscar m�s colisiones.
+				}
+			}
+		}
+	}
+	
+	private boolean detectarYNotificarColisionConBola (Objeto objeto) {
+		Rectangle rectActor = new Rectangle(objeto.getX(), objeto.getY(), objeto.getWidth(), objeto.getHeight());
+		if (rectActor.intersects(this.pelota.getRectanguloParaColisiones())) {
+			// En el caso de que exista una colisi�n, informo a los dos actores de que han colisionado y les indico el
+			// actor con el que se ha producido el choque
+			objeto.colisionProducidaConOtroActor(this.pelota);
+			this.pelota.colisionProducidaConOtroActor(objeto);
+			return true;
+		}
+		return false;
 	}
 	
 	/**
@@ -443,7 +346,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		while (isVisible()) {
 			long startTime = System.currentTimeMillis();
 			updateWorld();
-			checkCollisions();
+			
 			paintWorld();
 			usedTime = System.currentTimeMillis()-startTime;
 			try { 
@@ -475,7 +378,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		while (isVisible()) {
 			long startTime = System.currentTimeMillis();
 			updateWorld();
-			checkCollisions();
+			
 			paintWorld();
 			usedTime = System.currentTimeMillis()-startTime;
 			try { 

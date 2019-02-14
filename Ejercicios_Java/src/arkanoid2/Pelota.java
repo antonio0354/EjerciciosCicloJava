@@ -1,5 +1,6 @@
-package arkanoid;
+package arkanoid2;
 
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.Date;
@@ -27,7 +28,9 @@ public class Pelota extends Objeto {
 		
 	}
 
-	
+	public Rectangle getRectanguloParaColisiones () {
+		return new Rectangle(this.x + this.width / 2 - 4, this.y + this.height / 2 - 4, 8, 8);
+	}
 	
 	public void act() {
 		super.act();

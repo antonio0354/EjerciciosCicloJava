@@ -1,8 +1,10 @@
-package arkanoid;
+package arkanoid2;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+
+
 
 
 
@@ -58,6 +60,9 @@ public class Objeto {
 
 	public void remove() {
 		markedForRemoval = true;
+	}
+	
+	public void colisionProducidaConOtroActor(Objeto actorColisionado) {
 	}
 	
 	public boolean isMarkedForRemoval() {
