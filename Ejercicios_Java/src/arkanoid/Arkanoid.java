@@ -599,7 +599,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 			} catch (InterruptedException e) {}
 			
 			if(objetos.size()<=inmortales+1) {
-				JOptionPane.showMessageDialog(null, "Has ganado");
+				JOptionPane.showMessageDialog(null, "Has completado la segunda fase");
 				game3();
 			}
 			if(pelota.getY()>=Stage.HEIGHT-50) {
