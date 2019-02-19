@@ -56,6 +56,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 	private int vidas=3;
 	private boolean unavez1=false;
 	private boolean unavez2=false;
+	private boolean unavez3=false;
 	private int posicionXCapsula=0;
 	private int posicionYCapsula=0;
 	
@@ -156,7 +157,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		  				objetos.remove(a1);
 		  				posicionXCapsula=a1.getX()+30;
 		  				posicionYCapsula=a1.getY();
-		  				capsulas();
+		  				//capsulas();
 		  			}else {
 		  				a1.setSpriteNames( new String[] {"ladrilloroto.png"});
 		  				a1.golpes--;
@@ -176,7 +177,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		  				objetos.remove(a1);
 		  				posicionXCapsula=a1.getX()+30;
 		  				posicionYCapsula=a1.getY();
-		  				capsulas();
+		  				//capsulas();
 		  			}else {
 		  				a1.setSpriteNames( new String[] {"ladrilloroto.png"});
 		  				a1.golpes--;
@@ -199,7 +200,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 			  				objetos.remove(a1);
 			  				posicionXCapsula=a1.getX()+30;
 			  				posicionYCapsula=a1.getY();
-			  				capsulas();
+			  				//capsulas();
 			  			}else {
 			  				a1.setSpriteNames( new String[] {"ladrilloroto.png"});
 			  				a1.golpes--;
@@ -222,7 +223,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 				  				objetos.remove(a1);
 				  				posicionXCapsula=a1.getX()+30;
 				  				posicionYCapsula=a1.getY();
-				  				capsulas();
+				  				//capsulas();
 				  			}else {
 				  				a1.setSpriteNames( new String[] {"ladrilloroto.png"});
 				  				a1.golpes--;
@@ -301,7 +302,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		    	}
 		    	   }
 		    
-		    for( int i=0; i<2; i++) {
+		    for( int i=0; i<0; i++) {
 		    	for( int j=1; j< 2 ;j++) {
 		    		Ladrillo ladrillo = new Ladrillo(this);
 		    		ladrillo.Color2(j);;
@@ -313,7 +314,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		    	}
 		    	   }
 		    
-		    for( int i=0; i<3; i++) {
+		    for( int i=0; i<1; i++) {
 		    	for( int j=2; j< 3 ;j++) {
 		    		Ladrillo ladrillo = new Ladrillo(this);
 		    		ladrillo.Color2(j);;
@@ -324,7 +325,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		    	}
 		    	   }
 		    
-		    for( int i=0; i<4; i++) {
+		    for( int i=0; i<0; i++) {
 		    	for( int j=3; j< 4 ;j++) {
 		    		Ladrillo ladrillo = new Ladrillo(this);
 		    		ladrillo.Color2(j);;
@@ -334,7 +335,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		    	}
 		    	   }
 		    
-		    for( int i=0; i<5; i++) {
+		    for( int i=0; i<0; i++) {
 		    	for( int j=4; j< 5 ;j++) {
 		    		Ladrillo ladrillo = new Ladrillo(this);
 		    		ladrillo.Color2(j);;
@@ -346,7 +347,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		    	}
 		    	   }
 		    
-		    for( int i=0; i<6; i++) {
+		    for( int i=0; i<0; i++) {
 		    	for( int j=5; j< 6 ;j++) {
 		    		Ladrillo ladrillo = new Ladrillo(this);
 		    		ladrillo.Color2(j);;
@@ -377,6 +378,121 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
   
 	}
 	
+	
+	public void initWorld3() {
+		
+		
+		if(unavez3==false) {
+			objetos = new ArrayList();
+			for( int i=0; i<1; i++) {
+		    	for( int j=0; j< 1 ;j++) {
+		    		Marciano marciano = new Marciano(this);
+		    		marciano.imagen();
+		            marciano.setX(40+i*100);
+		            marciano.setY(20+j*50);
+		            marciano.setVx(3);
+		            objetos.add(marciano);
+		            
+		           
+		    	}
+		    	
+		    	
+		    }
+			for( int i=0; i<1; i++) {
+		    	for( int j=1; j< 2 ;j++) {
+		    		Marciano marciano = new Marciano(this);
+		    		marciano.imagen();
+		            marciano.setX(40+i*100);
+		            marciano.setY(20+j*50);
+		            marciano.setVx(2);
+		            objetos.add(marciano);
+		            
+		           
+		    	}
+		    	
+		    	
+		    }
+			for( int i=0; i<1; i++) {
+		    	for( int j=2; j< 3 ;j++) {
+		    		Marciano marciano = new Marciano(this);
+		    		marciano.imagen();
+		            marciano.setX(40+i*100);
+		            marciano.setY(20+j*50);
+		            marciano.setVx(4);
+		            objetos.add(marciano);
+		            
+		           
+		    	}
+		    	
+		    	
+		    }
+			for( int i=0; i<1; i++) {
+		    	for( int j=3; j< 4 ;j++) {
+		    		Marciano marciano = new Marciano(this);
+		    		marciano.imagen();
+		            marciano.setX(40+i*100);
+		            marciano.setY(20+j*50);
+		            marciano.setVx(5);
+		            objetos.add(marciano);
+		            
+		           
+		    	}
+		    	
+		    	
+		    }
+			for( int i=0; i<1; i++) {
+		    	for( int j=4; j< 5 ;j++) {
+		    		Marciano marciano = new Marciano(this);
+		    		marciano.imagen();
+		            marciano.setX(40+i*100);
+		            marciano.setY(20+j*50);
+		            marciano.setVx(1);
+		            objetos.add(marciano);
+		            
+		           
+		    	}
+		    	
+		    	
+		    }
+			for( int i=0; i<1; i++) {
+		    	for( int j=5; j< 6 ;j++) {
+		    		Marciano marciano = new Marciano(this);
+		    		marciano.imagen();
+		            marciano.setX(40+i*100);
+		            marciano.setY(20+j*50);
+		            marciano.setVx(10);
+		            objetos.add(marciano);
+		            
+		           
+		    	}
+		    	
+		    	
+		    }
+			
+			unavez3=true;
+		}
+    
+    
+    
+    
+    //crear la plataforma
+    player = new Player(this);
+    player.setX(Stage.WIDTH/2);
+    player.setY(400);
+    
+    
+    soundCache.loopSound("Solve The Puzzle.wav");
+   
+  //crear la pelota
+    for (int i = 0; i < 1; i++){
+    	pelota= new Pelota(this);
+        pelota.setX( player.getX()+20);
+	    pelota.setY( player.getY()-20);
+	    
+	    
+        objetos.add(pelota);
+    }
+	}
 
 	/**setSpriteNames( new String[] {"bola.png"});
 		setFrameSpeed(35);
@@ -484,13 +600,45 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 			
 			if(objetos.size()<=inmortales+1) {
 				JOptionPane.showMessageDialog(null, "Has ganado");
-				System.exit(0);
+				game3();
 			}
 			if(pelota.getY()>=Stage.HEIGHT-50) {
 				vidas--;
 				objetos.remove(pelota);
 				JOptionPane.showMessageDialog(null, "Has perdido una vida, vidas restantes: "+vidas);
 				game2();
+				
+			}
+			if(vidas==0) {
+				JOptionPane.showMessageDialog(null, "GAME OVER");
+				System.exit(0);
+			}
+		}
+	}
+	
+	public void game3() {
+		usedTime=1000;
+		initWorld3();
+	
+		while (isVisible()) {
+			long startTime = System.currentTimeMillis();
+			updateWorld();
+			checkCollisions();
+			paintWorld();
+			usedTime = System.currentTimeMillis()-startTime;
+			try { 
+				 Thread.sleep(SPEED);
+			} catch (InterruptedException e) {}
+			
+			if(objetos.size()==pasarFase) {
+				JOptionPane.showMessageDialog(null, "Has ganado");
+				System.exit(0);
+			}
+			if(pelota.getY()>=Stage.HEIGHT-50) {
+				vidas--;
+				objetos.remove(pelota);
+				JOptionPane.showMessageDialog(null, "Has perdido una vida, vidas restantes: "+vidas);
+				game3();
 				
 			}
 			if(vidas==0) {
