@@ -3,6 +3,7 @@ package arkanoid;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
@@ -22,7 +23,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import ejercicios_Programacion_Objetos_3enRaya.Celda;
+
 
 
 
@@ -59,6 +60,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 	private boolean unavez3=false;
 	private int posicionXCapsula=0;
 	private int posicionYCapsula=0;
+	
 	
 	private SoundCache soundCache;
 	
@@ -122,7 +124,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 	
 	public void checkCollisions() {
 		Rectangle playerBounds = player.getBounds();
-		
+		Rectangle pelotaBounds=pelota.getBounds();
 		
 		for (int i = 0; i < objetos.size(); i++) {
 			
@@ -133,9 +135,16 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 			Rectangle arriba= new Rectangle(a1.getX(),a1.getY(),a1.width,2);
 			Rectangle abajo= new Rectangle(a1.getX(),a1.getY()+19,a1.width,2);
 			
+			
+			
 			if (r1.intersects(playerBounds)) {
-				player.collision(a1);
-				a1.collision(player);
+				if(a1.nopildora==false) {
+					player.collision(a1);
+					a1.collision(player);
+				}else {
+					
+				}
+				
 				
 				
 			}
@@ -146,43 +155,54 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		  	
 		  	if (derecha.intersects(r2)) {
 		  	    
-		  	    pelota.setVx(-pelota.getVx());
-		  	   
-		  		
-		  		if(a1.inmortal==true) {
-		  			
+		  		if(a1.nopildora==false) {
+		  			 pelota.setVx(-pelota.getVx());
+				  	    player.score+=300;
+				  		
+				  		if(a1.inmortal==true) {
+				  			
+				  		}else {
+				  			
+				  			if(a1.golpes==0) {
+				  				objetos.remove(a1);
+				  				posicionXCapsula=a1.getX()+30;
+				  				posicionYCapsula=a1.getY();
+				  				//capsulas();
+				  			}else {
+				  				a1.setSpriteNames( new String[] {"ladrilloroto.png"});
+				  				a1.golpes--;
+				  			}
+				  			 
+				  		}
 		  		}else {
 		  			
-		  			if(a1.golpes==0) {
-		  				objetos.remove(a1);
-		  				posicionXCapsula=a1.getX()+30;
-		  				posicionYCapsula=a1.getY();
-		  				//capsulas();
-		  			}else {
-		  				a1.setSpriteNames( new String[] {"ladrilloroto.png"});
-		  				a1.golpes--;
-		  			}
-		  			 
 		  		}
+		  	   
 		  	
 		  	}else {
 		  	if (izquierda.intersects(r2)) {
 		  		 
-		  	    pelota.setVx(-pelota.getVx());
-		  	   
-		  	  if(a1.inmortal==true) {
-		  			
+		  		if(a1.nopildora==false) {
+		  			 pelota.setVx(-pelota.getVx());
+				  	    player.score+=300;
+				  	    
+				  	  if(a1.inmortal==true) {
+				  			
+				  		}else {
+				  			if(a1.golpes==0) {
+				  				objetos.remove(a1);
+				  				posicionXCapsula=a1.getX()+30;
+				  				posicionYCapsula=a1.getY();
+				  				//capsulas();
+				  			}else {
+				  				a1.setSpriteNames( new String[] {"ladrilloroto.png"});
+				  				a1.golpes--;
+				  			}
+				  		}
 		  		}else {
-		  			if(a1.golpes==0) {
-		  				objetos.remove(a1);
-		  				posicionXCapsula=a1.getX()+30;
-		  				posicionYCapsula=a1.getY();
-		  				//capsulas();
-		  			}else {
-		  				a1.setSpriteNames( new String[] {"ladrilloroto.png"});
-		  				a1.golpes--;
-		  			}
+		  			
 		  		}
+		  	   
 		  	    
 		  	 
 		  	    
@@ -191,29 +211,8 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		  	}else {
 		  		if (arriba.intersects(r2)) {
 		  			
-			  		if(a1.inmortal==true) {
-			  			pelota.setVy(-pelota.getVy());
-			  		}else {
-			  			a1.collision(a2);
-				  		a2.collision(a1);
-			  			if(a1.golpes==0) {
-			  				objetos.remove(a1);
-			  				posicionXCapsula=a1.getX()+30;
-			  				posicionYCapsula=a1.getY();
-			  				//capsulas();
-			  			}else {
-			  				a1.setSpriteNames( new String[] {"ladrilloroto.png"});
-			  				a1.golpes--;
-			  			}
-			  		}
-			  	    
-			  	 
-			  	    
-			  	    
-			  		
-			  	}else {
-			  		if (abajo.intersects(r2)) {
-			  		
+		  			if(a1.nopildora==false) {
+		  				player.score+=100;
 				  		if(a1.inmortal==true) {
 				  			pelota.setVy(-pelota.getVy());
 				  		}else {
@@ -229,6 +228,39 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 				  				a1.golpes--;
 				  			}
 				  		}
+		  			}else {
+		  				
+		  			}
+		  			
+			  	    
+			  	 
+			  	    
+			  	    
+			  		
+			  	}else {
+			  		if (abajo.intersects(r2)) {
+			  			
+			  			if(a1.nopildora==false) {
+			  				player.score+=100;
+					  		if(a1.inmortal==true) {
+					  			pelota.setVy(-pelota.getVy());
+					  		}else {
+					  			a1.collision(a2);
+						  		a2.collision(a1);
+					  			if(a1.golpes==0) {
+					  				objetos.remove(a1);
+					  				posicionXCapsula=a1.getX()+30;
+					  				posicionYCapsula=a1.getY();
+					  				//capsulas();
+					  			}else {
+					  				a1.setSpriteNames( new String[] {"ladrilloroto.png"});
+					  				a1.golpes--;
+					  			}
+					  		}
+			  			}else {
+			  				
+			  			}
+			  			
 				  	    
 				  	 
 				  	    
@@ -242,13 +274,28 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		}
 	}
 	
+	
+	
+	public void paintScore(Graphics2D g) {
+		g.setFont(new Font("Arial",Font.BOLD,20));
+		g.setPaint(Color.green);
+		g.drawString("Puntuacion:",20,Stage.HEIGHT - 50);
+		g.setPaint(Color.red);
+		g.drawString(player.score+"",150,Stage.HEIGHT  -50);
+	}
+	
+	public void paintStatus(Graphics2D g) {
+		  paintScore(g);
+		  
+		}
+	
 	public void initWorld() {
 		
 		
 		if(unavez1==false) {
 			objetos = new ArrayList();
-			for( int i=0; i<1; i++) {
-		    	for( int j=0; j< 1 ;j++) {
+			for( int i=0; i<6; i++) {
+		    	for( int j=0; j< 5 ;j++) {
 		    		Ladrillo ladrillo = new Ladrillo(this);
 		    		ladrillo.Color(j);;
 		            ladrillo.setX(40+i*100);
@@ -302,7 +349,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		    	}
 		    	   }
 		    
-		    for( int i=0; i<0; i++) {
+		    for( int i=0; i<2; i++) {
 		    	for( int j=1; j< 2 ;j++) {
 		    		Ladrillo ladrillo = new Ladrillo(this);
 		    		ladrillo.Color2(j);;
@@ -314,7 +361,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		    	}
 		    	   }
 		    
-		    for( int i=0; i<1; i++) {
+		    for( int i=0; i<3; i++) {
 		    	for( int j=2; j< 3 ;j++) {
 		    		Ladrillo ladrillo = new Ladrillo(this);
 		    		ladrillo.Color2(j);;
@@ -325,7 +372,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		    	}
 		    	   }
 		    
-		    for( int i=0; i<0; i++) {
+		    for( int i=0; i<4; i++) {
 		    	for( int j=3; j< 4 ;j++) {
 		    		Ladrillo ladrillo = new Ladrillo(this);
 		    		ladrillo.Color2(j);;
@@ -335,7 +382,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		    	}
 		    	   }
 		    
-		    for( int i=0; i<0; i++) {
+		    for( int i=0; i<5; i++) {
 		    	for( int j=4; j< 5 ;j++) {
 		    		Ladrillo ladrillo = new Ladrillo(this);
 		    		ladrillo.Color2(j);;
@@ -347,7 +394,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		    	}
 		    	   }
 		    
-		    for( int i=0; i<0; i++) {
+		    for( int i=0; i<6; i++) {
 		    	for( int j=5; j< 6 ;j++) {
 		    		Ladrillo ladrillo = new Ladrillo(this);
 		    		ladrillo.Color2(j);;
@@ -523,12 +570,10 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		}
 		player.paint(g);
 		
+		paintScore(g);
 
 		g.setColor(Color.white);
-		if (usedTime > 0)
-		  g.drawString(String.valueOf(1000/usedTime)+" fps",0,Stage.HEIGHT-50);
-  	else
-	  	g.drawString("--- fps",0,Stage.HEIGHT-50);
+		
 		strategy.show();
 	}
 	
@@ -579,6 +624,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 			}
 			if(vidas==0) {
 				JOptionPane.showMessageDialog(null, "GAME OVER");
+				JOptionPane.showMessageDialog(null, "La puntuacion ha sido: "+player.score);
 				System.exit(0);
 			}
 		}
@@ -611,6 +657,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 			}
 			if(vidas==0) {
 				JOptionPane.showMessageDialog(null, "GAME OVER");
+				JOptionPane.showMessageDialog(null, "La puntuacion ha sido: "+player.score);
 				System.exit(0);
 			}
 		}
@@ -632,6 +679,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 			
 			if(objetos.size()==pasarFase) {
 				JOptionPane.showMessageDialog(null, "Has ganado");
+				JOptionPane.showMessageDialog(null, "La puntuacion ha sido: "+player.score);
 				System.exit(0);
 			}
 			if(pelota.getY()>=Stage.HEIGHT-50) {
@@ -643,6 +691,7 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 			}
 			if(vidas==0) {
 				JOptionPane.showMessageDialog(null, "GAME OVER");
+				JOptionPane.showMessageDialog(null, "La puntuacion ha sido: "+player.score);
 				System.exit(0);
 			}
 		}

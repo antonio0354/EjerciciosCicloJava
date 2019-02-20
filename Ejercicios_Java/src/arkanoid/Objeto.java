@@ -13,7 +13,21 @@ public class Objeto {
 	protected int num;
 	protected boolean inmortal=false;
 	protected int golpes=0;
-	
+	protected boolean nopildora= false;
+	/**
+	 * @return the nopildora
+	 */
+	public boolean isNopildora() {
+		return nopildora;
+	}
+
+	/**
+	 * @param nopildora the nopildora to set
+	 */
+	public void setNopildora(boolean nopildora) {
+		this.nopildora = nopildora;
+	}
+
 	/**
 	 * @return the golpes
 	 */

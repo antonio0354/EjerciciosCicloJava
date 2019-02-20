@@ -99,7 +99,7 @@ public class Capsula extends Objeto {
 
 	public Capsula(Stage stage) {
 		super(stage);
-		
+		nopildora=true;
 	
 	}
 	

@@ -8,6 +8,10 @@ public class Player extends Objeto {
 	protected int vx;
 	protected int vy;
 	private boolean up,down,left,right;
+	
+	
+
+	public static int score=0;
 		
 	
 	public Player(Stage stage) {
