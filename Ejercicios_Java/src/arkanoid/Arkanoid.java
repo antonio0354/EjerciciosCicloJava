@@ -294,8 +294,8 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		
 		if(unavez1==false) {
 			objetos = new ArrayList();
-			for( int i=0; i<6; i++) {
-		    	for( int j=0; j< 5 ;j++) {
+			for( int i=0; i<1; i++) {
+		    	for( int j=0; j< 1 ;j++) {
 		    		Ladrillo ladrillo = new Ladrillo(this);
 		    		ladrillo.Color(j);;
 		            ladrillo.setX(40+i*100);
@@ -349,8 +349,8 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		    	}
 		    	   }
 		    
-		    for( int i=0; i<2; i++) {
-		    	for( int j=1; j< 2 ;j++) {
+		    for( int i=0; i<0; i++) {
+		    	for( int j=1; j< 0 ;j++) {
 		    		Ladrillo ladrillo = new Ladrillo(this);
 		    		ladrillo.Color2(j);;
 		            ladrillo.setX(230+i*100);
@@ -361,8 +361,8 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		    	}
 		    	   }
 		    
-		    for( int i=0; i<3; i++) {
-		    	for( int j=2; j< 3 ;j++) {
+		    for( int i=0; i<0; i++) {
+		    	for( int j=2; j< 0 ;j++) {
 		    		Ladrillo ladrillo = new Ladrillo(this);
 		    		ladrillo.Color2(j);;
 		            ladrillo.setX(180+i*100);
@@ -372,8 +372,8 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		    	}
 		    	   }
 		    
-		    for( int i=0; i<4; i++) {
-		    	for( int j=3; j< 4 ;j++) {
+		    for( int i=0; i<0; i++) {
+		    	for( int j=3; j< 0 ;j++) {
 		    		Ladrillo ladrillo = new Ladrillo(this);
 		    		ladrillo.Color2(j);;
 		            ladrillo.setX(130+i*100);
@@ -382,8 +382,8 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		    	}
 		    	   }
 		    
-		    for( int i=0; i<5; i++) {
-		    	for( int j=4; j< 5 ;j++) {
+		    for( int i=0; i<0; i++) {
+		    	for( int j=4; j< 0 ;j++) {
 		    		Ladrillo ladrillo = new Ladrillo(this);
 		    		ladrillo.Color2(j);;
 		            ladrillo.setX(80+i*100);
@@ -394,8 +394,8 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		    	}
 		    	   }
 		    
-		    for( int i=0; i<6; i++) {
-		    	for( int j=5; j< 6 ;j++) {
+		    for( int i=0; i<0; i++) {
+		    	for( int j=5; j< 0 ;j++) {
 		    		Ladrillo ladrillo = new Ladrillo(this);
 		    		ladrillo.Color2(j);;
 		            ladrillo.setX(30+i*100);
@@ -409,10 +409,8 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 		    unavez2=true;
 		}
 		
-    
-    
-  
-    
+	
+		
     soundCache.loopSound("Solve The Puzzle.wav");
     for (int i = 0; i < 1; i++){
     	pelota= new Pelota(this);

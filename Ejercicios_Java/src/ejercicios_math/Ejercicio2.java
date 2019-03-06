@@ -1,0 +1,10 @@
+package ejercicios_math;
+
+public class Ejercicio2 {
+
+	public static void main(String[] args) {
+
+		
+	}
+
+}
