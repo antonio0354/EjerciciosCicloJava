@@ -16,18 +16,66 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Properties;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import ejercicios_ficheroPropiedades.Ejercicio1;
 
 
 
 
 
 public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListener , MouseMotionListener{
+	
+	private static Properties propiedades = null;
+	
+	private static Properties getPropiedades() {
+		if (propiedades == null) {
+			propiedades = new Properties();
+		    
+			try {
+				propiedades.load(propiedades.getClass().getResourceAsStream("/arkanoid/ejemplo.properties"));
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 
+		}
+		return propiedades;
+	}
+	
+	public static String getProperty(String nombrePropiedad) {
+		return getPropiedades().getProperty(nombrePropiedad);
+	}
+
+	
+	/**
+	 * 
+	 * @param nombrePropiedad
+	 * @return
+	 */
+	public static int getIntProperty (String nombrePropiedad) {
+		return Integer.parseInt(getPropiedades().getProperty(nombrePropiedad));
+	}
+	
+	
+	/**
+	 * 
+	 * @param nombrePropiedad
+	 * @return
+	 */
+	public static Float getFloatProperty (String nombrePropiedad) {
+		return Float.parseFloat(getPropiedades().getProperty(nombrePropiedad));
+	}
 	
 	private BufferStrategy strategy;
 	private long usedTime;
@@ -558,9 +606,14 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 	 * Metodo que pinta los objetos 
 	 */
 	public void paintWorld() {
+		String colorFondo = Arkanoid.getProperty("COLOR");
+		
+		
+		
+		
 		Toolkit.getDefaultToolkit().sync();
 		Graphics2D g = (Graphics2D)strategy.getDrawGraphics();
-		g.setColor(Color.black);
+		g.setColor(Color.decode(colorFondo));
 		g.fillRect(0,0,getWidth(),getHeight());
 		for (int i = 0; i < objetos.size(); i++) {
 			Objeto m = (Objeto)objetos.get(i);
@@ -698,6 +751,8 @@ public class Arkanoid extends Canvas implements Stage, KeyListener , MouseListen
 	public static void main(String[] args) {
 		Arkanoid ark = new Arkanoid();
 		ark.game();
+		
+		
 	}
 
 	@Override

@@ -100,7 +100,7 @@ public class Ejercicio1 {
 		System.out.println("Fecha actual : " + ahora.getTime());
 
 		ahora.add(Calendar.DAY_OF_MONTH, +300);
-		System.out.println("Ahora despues de 3 dias : " + ahora.getTime());
+	   	System.out.println("Ahora despues de 3 dias : " + ahora.getTime());
 		
 		
 		
@@ -121,11 +121,20 @@ public class Ejercicio1 {
 	}
 	
 	public static void diferenciaRomaNewYork() {
-		Calendar ahoraEnRoma = Calendar.getInstance(TimeZone.getTimeZone("Europa/Roma"));
-		Calendar ahoraEnNewYork = Calendar.getInstance(TimeZone.getTimeZone("America/New_York"));
+		Calendar ahoraEnRoma = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"));
+		Calendar ahoraEnSydney = Calendar.getInstance(TimeZone.getTimeZone("Australia/Sydney"));
 		
 		System.out.println("Hora en Roma: " + ahoraEnRoma.get(Calendar.HOUR_OF_DAY));
-		System.out.println("Hora en New York: " + ahoraEnNewYork.get(Calendar.HOUR_OF_DAY));
+		System.out.println("Hora en Sydney: " + ahoraEnSydney.get(Calendar.HOUR_OF_DAY));
+		
+		Calendar diferencia= Calendar.getInstance();
+		
+		int horaSydney=ahoraEnSydney.get(Calendar.HOUR_OF_DAY);
+		int horaRoma=ahoraEnRoma.get(Calendar.HOUR_OF_DAY);
+		
+		diferencia.add(ahoraEnRoma.get(Calendar.HOUR_OF_DAY), -ahoraEnSydney.get(Calendar.HOUR_OF_DAY));
+		System.out.println("Diferencia horaria de: "+(horaRoma-horaSydney));
+		
 	}
 
 }
